@@ -958,10 +958,17 @@ body.lock { overflow: hidden; }
 
 /* Hero image: smaller, kept inside the content area below the header */
 .hero-img { top: calc(var(--header-h) + 28px); bottom: 90px; right: max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter))); width: min(44%, 560px); overflow: visible; }
-.hero-img img { object-fit: contain; object-position: center; -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 98%); mask-image: radial-gradient(closest-side, #000 55%, transparent 98%); }
+.hero-img img { object-fit: contain; object-position: center; -webkit-mask-image: radial-gradient(closest-side, #000 68%, transparent 100%); mask-image: radial-gradient(closest-side, #000 68%, transparent 100%); }
 .hero-img::before { display: none; }
 @media (max-width: 960px) {
   .hero-img { top: calc(var(--header-h) + 8px); bottom: auto; left: 50%; right: auto; transform: translateX(-50%); width: min(88%, 420px); height: 320px; }
   .hero-side { min-height: 320px; }
 }
 @media (max-width: 560px) { .hero-img { height: 270px; } .hero-side { min-height: 270px; } }
+
+/* Hero image: height matched to headline→buttons by main.js, 3D tilt */
+@media (min-width: 961px) { .hero-img { bottom: auto; width: auto; aspect-ratio: 1374 / 1145; } }
+.hero-img { perspective: 1100px; }
+.hero-img img { animation: none; transform-style: preserve-3d; transition: transform .25s ease-out; will-change: transform; cursor: grab; pointer-events: auto; touch-action: pan-y; }
+.hero-img.dragging img { cursor: grabbing; transition: none; }
+.hero-img { pointer-events: none; }
