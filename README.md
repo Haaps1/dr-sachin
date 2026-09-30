@@ -25,8 +25,8 @@ assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Ap
   `care@drsachingr.com` to update them everywhere.
 - **Placeholders to replace before launch:** the email address (`care@drsachingr.com`) and the
   consultation hours on the Contact page and in the footer are dummy values.
-- **Doctor photo:** add `assets/img/dr-sachin.webp` (portrait, about 1000×1250, subject centred).
-  It is used on the About page automatically. Until it exists, a stylised placeholder bust is shown.
+- **Doctor photo:** `assets/img/dr-sachin.webp` (supplied by the client).
+  Used on Home (Meet your neurosurgeon), About and the treatment page doctor card.
 - **Treatments:** only Brain Tumor Surgery has a page so far. The other treatments are listed on the
   home page without links until their pages are written.
 - **Hero image:** `assets/img/hero-brain.webp` on Home and Brain Tumor Surgery (static).
