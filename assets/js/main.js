@@ -243,6 +243,15 @@ window.SITE = {
     pick(btns[0].dataset.city);
   });
 
+  /* ---------- Treatment page: highlight the section in view ---------- */
+  const sub = $$('.subnav a');
+  if (sub.length) {
+    const spy = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) sub.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    sub.forEach((a) => { const t = $(a.getAttribute('href')); if (t) spy.observe(t); });
+  }
+
   /* ---------- Contact form → WhatsApp ---------- */
   $$('form[data-wa-form]').forEach((f) => {
     f.addEventListener('submit', (e) => {

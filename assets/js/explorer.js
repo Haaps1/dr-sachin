@@ -1,4 +1,4 @@
-/* Transparent-body treatment explorer, treatment sheet and treatment directory.
+/* Treatment explorer: body map (2D SVG, upgraded to 3D by body3d.js), area filters and treatment list.
    Depends on treatments.js (window.TREATMENTS / window.CATEGORIES) and main.js (window.SITE). */
 (function () {
   'use strict';
@@ -8,7 +8,6 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const icon = (id) => `<svg class="ico" aria-hidden="true"><use href="${SPRITE}#i-${id}"/></svg>`;
   const catName = (id) => (C.find((c) => c.id === id) || { name: 'All' }).name;
-  const byId = (id) => T.find((t) => t.id === id);
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   /* ---------------- Body SVG ---------------- */
@@ -95,10 +94,10 @@
   }
 
   /* ---------------- Rows / cards ---------------- */
-  const row = (t, i) => `<button class="t-row" type="button" data-open="${t.id}" style="--i:${i}">
+  const row = (t, i) => `<a class="t-row" href="treatments/${t.id}.html" style="--i:${i}">
       <span class="t-ic">${icon(CAT_ICON[t.c])}</span>
       <span><b>${esc(t.n)}</b><small>${esc(t.s)}</small></span>
-      <span class="t-go">${icon('arrow')}</span></button>`;
+      <span class="t-go">${icon('arrow')}</span></a>`;
 
   /* ---------------- Explorer ---------------- */
   let uidSeq = 0;
@@ -122,7 +121,6 @@
         <div class="chips" role="group" aria-label="Filter treatments by area">${chips}</div>
         <div class="ex-head" aria-live="polite"><h3><span class="ex-title">All treatments</span><span class="count"></span></h3><p class="ex-blurb"></p></div>
         <div class="ex-list"></div>
-        ${root.dataset.more ? `<div class="ex-more"><a class="btn btn--primary" href="${root.dataset.more}" data-magnetic>Explore all treatments ${icon('arrow')}</a></div>` : ''}
       </div>`;
     const svg = root.querySelector('.ex-svg');
     const list = root.querySelector('.ex-list');
@@ -146,7 +144,8 @@
       root.dataset.focus = cat;
       root.querySelectorAll('.chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
       root.querySelectorAll('.ex-foot button').forEach((b) => b.setAttribute('aria-pressed', String(cat === 'pediatric' ? b.dataset.cat === 'pediatric' : b.dataset.cat === 'all')));
-      root.querySelectorAll('.hotspot').forEach((h) => h.classList.toggle('on', h.dataset.cat === cat));
+      root.querySelectorAll('.hotspot, .hs3').forEach((h) => h.classList.toggle('on', h.dataset.cat === cat));
+      root.dispatchEvent(new CustomEvent('focuscat', { detail: cat }));
       tweenView(VIEW[cat] || VIEW.all);
       const items = cat === 'all' ? T : T.filter((t) => t.c === cat);
       const c = C.find((x) => x.id === cat);
@@ -162,8 +161,9 @@
     root.addEventListener('click', (e) => {
       const b = e.target.closest('[data-cat]');
       if (b && root.contains(b)) {
-        const same = root.dataset.focus === b.dataset.cat && b.classList.contains('hotspot');
-        select(same ? 'all' : b.dataset.cat, { scroll: b.classList.contains('hotspot') });
+        const hot = b.matches('.hotspot, .hs3');
+        const same = root.dataset.focus === b.dataset.cat && hot;
+        select(same ? 'all' : b.dataset.cat, { scroll: hot });
       }
     });
     root.addEventListener('keydown', (e) => {
@@ -185,135 +185,9 @@
     return { select };
   }
 
-  /* ---------------- Sheet ---------------- */
-  let sheet, scrim, lastOrigin, isOpen = false;
-  function buildSheet() {
-    scrim = document.createElement('div'); scrim.className = 'sheet-scrim';
-    sheet = document.createElement('section');
-    sheet.className = 'sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true'); sheet.setAttribute('aria-labelledby', 'sheet-title'); sheet.tabIndex = -1;
-    document.body.append(scrim, sheet);
-    scrim.addEventListener('click', close);
-    document.addEventListener('keydown', (e) => {
-      if (!isOpen) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'Tab') { // keep focus inside the sheet
-        const f = sheet.querySelectorAll('a[href], button');
-        const first = f[0], last = f[f.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
-    });
-  }
-  function fill(t) {
-    const S = window.SITE || {};
-    const msg = encodeURIComponent(`Hello Dr Sachin, I would like to consult about ${t.n}.`);
-    sheet.innerHTML = `
-      <div class="sheet-top"><span class="sheet-handle"></span><div class="sheet-drag"></div>
-        <button class="sheet-close" type="button" aria-label="Close">${icon('close')}</button>
-        <span class="eyebrow">${esc(catName(t.c))}</span>
-        <h2 id="sheet-title">${esc(t.n)}</h2><p>${esc(t.s)}</p>
-        <div class="sheet-tags">${t.t.map((x) => `<span>${esc(x)}</span>`).join('')}</div></div>
-      <div class="sheet-body">
-        <p class="anim" style="--i:0">${esc(t.o)}</p>
-        <div class="anim" style="--i:1"><h3>${icon('list')}When is it needed?</h3><ul class="ticks">${t.w.map((x) => `<li>${icon('check')}<span>${esc(x)}</span></li>`).join('')}</ul></div>
-        <div class="anim" style="--i:2"><h3>${icon('spark')}How Dr Sachin approaches it</h3><ol class="steps">${t.h.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></div>
-        <div class="recovery anim" style="--i:3"><h3>${icon('shield')}Recovery</h3><p>${esc(t.r)}</p></div>
-        <p class="sheet-note anim" style="--i:4">This is general information. Your treatment plan is decided after a personal consultation and review of your scans.</p>
-      </div>
-      <div class="sheet-cta">
-        <a class="btn btn--primary" href="tel:${S.phoneIntl || ''}">${icon('phone')}Call now</a>
-        <a class="btn btn--glow" href="https://wa.me/${S.whatsapp || ''}?text=${msg}" target="_blank" rel="noopener">${icon('chat')}WhatsApp</a>
-      </div>`;
-    sheet.querySelector('.sheet-close').addEventListener('click', close);
-    enableDrag();
-  }
-  function insetFrom(el) {
-    const s = sheet.getBoundingClientRect();
-    if (!el || !el.isConnected) return `inset(${s.height * 0.4}px ${s.width * 0.1}px ${s.height * 0.4}px ${s.width * 0.1}px round 32px)`;
-    const o = el.getBoundingClientRect();
-    const cl = (v) => Math.max(0, v).toFixed(1) + 'px';
-    return `inset(${cl(o.top - s.top)} ${cl(s.right - o.right)} ${cl(s.bottom - o.bottom)} ${cl(o.left - s.left)} round 20px)`;
-  }
-  function open(id, origin, push = true) {
-    const t = byId(id); if (!t) return;
-    if (!sheet) buildSheet();
-    lastOrigin = origin || document.activeElement;
-    fill(t);
-    sheet.classList.add('open'); scrim.classList.add('open'); document.body.classList.add('lock');
-    sheet.style.transform = '';
-    isOpen = true;
-    if (!reduce) sheet.animate([{ clipPath: insetFrom(origin), opacity: 0.4 }, { clipPath: 'inset(0px 0px 0px 0px round 32px)', opacity: 1 }], { duration: 750, easing: 'cubic-bezier(.22,1,.36,1)' });
-    sheet.querySelector('.sheet-body').scrollTop = 0;
-    setTimeout(() => sheet.querySelector('.sheet-close').focus({ preventScroll: true }), 60);
-    if (push) history.replaceState(null, '', '#t-' + id);
-  }
-  function close() {
-    if (!isOpen) return;
-    isOpen = false;
-    scrim.classList.remove('open'); document.body.classList.remove('lock');
-    const done = () => { sheet.classList.remove('open'); sheet.style.transform = ''; };
-    if (reduce) done();
-    else sheet.animate([{ clipPath: 'inset(0px 0px 0px 0px round 32px)', opacity: 1 }, { clipPath: insetFrom(lastOrigin), opacity: 0 }], { duration: 520, easing: 'cubic-bezier(.64,0,.78,0)' }).onfinish = done;
-    if (location.hash.startsWith('#t-')) history.replaceState(null, '', location.pathname + location.search);
-    if (lastOrigin && lastOrigin.focus) lastOrigin.focus({ preventScroll: true });
-  }
-  function enableDrag() { // pull the bottom sheet down to dismiss on phones
-    const zone = sheet.querySelector('.sheet-top');
-    let y0 = null, dy = 0;
-    zone.addEventListener('pointerdown', (e) => { if (innerWidth > 640 || e.target.closest('button')) return; y0 = e.clientY; dy = 0; zone.setPointerCapture(e.pointerId); sheet.style.transition = 'none'; });
-    zone.addEventListener('pointermove', (e) => { if (y0 === null) return; dy = Math.max(0, e.clientY - y0); sheet.style.transform = `translateY(${dy}px)`; });
-    const end = () => {
-      if (y0 === null) return; y0 = null; sheet.style.transition = 'transform .45s cubic-bezier(.22,1,.36,1)';
-      if (dy > 110) close(); else sheet.style.transform = '';
-      setTimeout(() => { sheet.style.transition = ''; }, 460);
-    };
-    zone.addEventListener('pointerup', end); zone.addEventListener('pointercancel', end);
-  }
-  document.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-open]');
-    if (b) { e.preventDefault(); open(b.dataset.open, b); }
-  });
-
-  /* ---------------- Directory (search + filter with FLIP) ---------------- */
-  function Directory(root) {
-    const chips = [{ id: 'all', name: 'All' }].concat(C).map((c) => `<button class="chip" type="button" data-f="${c.id}" aria-pressed="${c.id === 'all'}">${c.name}</button>`).join('');
-    root.innerHTML = `<div class="dir-tools"><label class="search"><span class="sr-only">Search treatments</span>${icon('search')}<input type="search" placeholder="Search e.g. disc, tumour, child" autocomplete="off"></label><div class="chips" role="group" aria-label="Filter by area">${chips}</div></div>
-      <div class="dir">${T.map((t) => `<button type="button" class="card" data-tilt data-open="${t.id}" data-c="${t.c}" data-k="${esc((t.n + ' ' + t.s + ' ' + t.t.join(' ') + ' ' + catName(t.c)).toLowerCase())}"><span class="glare"></span><span class="cat">${catName(t.c)}</span><span class="t-ic">${icon(CAT_ICON[t.c])}</span><h3>${esc(t.n)}</h3><p>${esc(t.s)}</p><span class="link-arrow">View details ${icon('arrow')}</span></button>`).join('')}</div>
-      <p class="dir-empty">No treatment matches that search. Try another word, or call us and we will guide you.</p>`;
-    const cards = [...root.querySelectorAll('.dir .card')];
-    const input = root.querySelector('input');
-    let f = 'all';
-    function apply() {
-      const q = input.value.trim().toLowerCase();
-      const first = new Map(cards.map((c) => [c, c.getBoundingClientRect()]));
-      let shown = 0;
-      cards.forEach((c) => {
-        const ok = (f === 'all' || c.dataset.c === f) && (!q || q.split(/\s+/).every((w) => c.dataset.k.includes(w)));
-        c.classList.toggle('gone', !ok); if (ok) shown++;
-      });
-      root.querySelector('.dir-empty').classList.toggle('show', !shown);
-      if (reduce) return;
-      cards.forEach((c) => {
-        if (c.classList.contains('gone')) return;
-        const a = first.get(c), b = c.getBoundingClientRect();
-        if (!a.width) { c.animate([{ opacity: 0, transform: 'scale(.92)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.22,1,.36,1)' }); return; }
-        const dx = a.left - b.left, dy = a.top - b.top;
-        if (dx || dy) c.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'none' }], { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)' });
-      });
-    }
-    root.querySelectorAll('[data-f]').forEach((b) => b.addEventListener('click', () => {
-      f = b.dataset.f; root.querySelectorAll('[data-f]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); apply();
-    }));
-    input.addEventListener('input', apply);
-  }
-
   /* ---------------- Boot ---------------- */
+  window.BODY_GEO = { BODY, ARM, LEG, CORD, CAROTID, ARM_ART, mirror, VIEW, HOTSPOTS: HOTSPOTS.map((h) => ({ id: h.id, name: catName(h.id) })) };
   document.querySelectorAll('[data-explorer]').forEach((el) => Explorer(el));
-  document.querySelectorAll('[data-directory]').forEach((el) => Directory(el));
   const S = window.SITE;
-  document.querySelectorAll('[data-explorer] [data-reveal], [data-directory] [data-reveal]').forEach((el) => S && S.observe ? S.observe(el) : el.classList.add('in'));
-  const openFromHash = () => { const m = location.hash.match(/^#t-([\w-]+)/); if (m && byId(m[1])) open(m[1], null, false); };
-  openFromHash();
-  addEventListener('hashchange', openFromHash);
-  window.Treatments = { open, close };
+  document.querySelectorAll('[data-explorer] [data-reveal]').forEach((el) => S && S.observe ? S.observe(el) : el.classList.add('in'));
 })();
