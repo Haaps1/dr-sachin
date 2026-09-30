@@ -1,0 +1,10 @@
+{
+  "name": "Dr Sachin G R · Neurosurgeon",
+  "short_name": "Dr Sachin",
+  "description": "Brain & spine surgery by Dr Sachin G R, senior neurosurgeon.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F7FAFC",
+  "theme_color": "#0B1F3A",
+  "icons": [{ "src": "assets/img/logo-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
