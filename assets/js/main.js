@@ -243,7 +243,7 @@ window.SITE = {
     pick(btns[0].dataset.city);
   });
 
-  /* ---------- Hero image: align with headline → buttons, 3D tilt / drag to rotate ---------- */
+  /* ---------- Hero image: align with headline → buttons ---------- */
   $$('.hero').forEach((hero) => {
     const box = $('.hero-img', hero), img = box && $('img', box), h1 = $('.h1', hero), acts = $('.hero-actions', hero);
     if (!img) return;
@@ -253,19 +253,6 @@ window.SITE = {
       box.style.top = t + 'px'; box.style.height = (b - t) + 'px';
     };
     fit(); addEventListener('resize', fit); d.fonts && d.fonts.ready.then(fit); new ResizeObserver(fit).observe(hero);
-    let ry = 0, rx = 0, drag = null, last = 0;
-    const set = () => { img.style.transform = `scale(1.22) rotateY(${ry}deg) rotateX(${rx}deg)`; };
-    img.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, ry, rx }; box.classList.add('dragging'); img.setPointerCapture(e.pointerId); });
-    img.addEventListener('pointermove', (e) => {
-      if (drag) { ry = clamp(drag.ry + (e.clientX - drag.x) * 0.25, -40, 40); rx = clamp(drag.rx - (e.clientY - drag.y) * 0.15, -18, 18); last = performance.now(); set(); }
-      else if (fine) { const r = img.getBoundingClientRect(); ry = ((e.clientX - r.left) / r.width - 0.5) * 22; rx = -((e.clientY - r.top) / r.height - 0.5) * 12; last = performance.now(); set(); }
-    });
-    const end = () => { drag = null; box.classList.remove('dragging'); };
-    img.addEventListener('pointerup', end); img.addEventListener('pointercancel', end);
-    if (!reduce) (function sway(now) { // gentle auto-rotate when idle
-      if (!drag && now - last > 1800) { ry += (Math.sin(now / 1800) * 14 - ry) * 0.05; rx += (Math.sin(now / 2600) * 4 - rx) * 0.05; set(); }
-      requestAnimationFrame(sway);
-    })(0);
   });
 
   /* ---------- Treatment page: highlight the section in view ---------- */

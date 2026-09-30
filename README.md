@@ -29,7 +29,7 @@ assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Ap
   It is used on the About page automatically. Until it exists, a stylised placeholder bust is shown.
 - **Treatments:** only Brain Tumor Surgery has a page so far. The other treatments are listed on the
   home page without links until their pages are written.
-- **Hero image:** `assets/img/hero-brain.webp` on Home and Brain Tumor Surgery (tilts in 3D, drag to turn).
+- **Hero image:** `assets/img/hero-brain.webp` on Home and Brain Tumor Surgery (static).
   Make sure you hold the licence for it before launch.
 - **Testimonials** on the home page are **samples** (marked "Sample"). Replace them with genuine
   reviews shared with the patient's consent. See the comment above the section in `index.html`.
