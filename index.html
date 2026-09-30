@@ -18,7 +18,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Physician", "name": "Dr Sachin G R", "description": "Senior neurosurgeon specialising in brain and spine surgery, minimally invasive and endoscopic spine surgery, skull base and paediatric neurosurgery.", "medicalSpecialty": ["Neurosurgery", "Spine Surgery"], "telephone": "+91-99142-08940", "alumniOf": [{"@type": "CollegeOrUniversity", "name": "PGIMER Chandigarh"}], "knowsAbout": ["Brain tumor surgery", "Skull base surgery", "Minimally invasive spine surgery", "Endoscopic spine surgery", "Pediatric neurosurgery"]}</script>
-<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js"}}</script>
+<link rel="preload" href="assets/img/hero-brain.webp" as="image" fetchpriority="high">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -125,10 +125,8 @@
       <div><span class="eyebrow">Your journey</span><h2 class="h2" data-split>From first scan to <em>full recovery.</em></h2></div>
       <p class="lead" data-reveal="focus">A clear path, explained at every step, so you always know what comes next.</p>
     </div>
-    <div class="journey" data-progress>
-      <svg class="journey-line" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="jGrad"><stop offset="0" stop-color="#0E7490"/><stop offset="1" stop-color="#38BDF8"/></linearGradient></defs>
-        <path class="bg" d="M0 21C100 -4 150 46 250 21S400 -4 500 21 650 46 750 21 900 -4 1000 21"/><path class="fg" pathLength="1" d="M0 21C100 -4 150 46 250 21S400 -4 500 21 650 46 750 21 900 -4 1000 21"/></svg>
-      <div class="step"><span class="dot"></span><small>STEP 01</small><h3>Consult</h3><p>Detailed history, examination and a calm conversation about your symptoms.</p></div><div class="step"><span class="dot"></span><small>STEP 02</small><h3>Imaging review</h3><p>MRI, CT and nerve studies reviewed in depth, with a second opinion if you need one.</p></div><div class="step"><span class="dot"></span><small>STEP 03</small><h3>Personal plan</h3><p>Non-surgical options first. If surgery helps, the least invasive route is chosen.</p></div><div class="step"><span class="dot"></span><small>STEP 04</small><h3>Surgery</h3><p>Precision surgery with navigation, microscope or endoscope and nerve monitoring.</p></div><div class="step"><span class="dot"></span><small>STEP 05</small><h3>Recovery</h3><p>Early walking, a rehab plan and follow-up until you are back to your life.</p></div>
+    <div class="jcards" data-stagger>
+      <article class="jcard" data-reveal="flip"><span class="jnum">01</span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-user"/></svg></span><h3>Consult</h3><p>Detailed history, examination and a calm conversation about your symptoms.</p></article><article class="jcard" data-reveal="flip"><span class="jnum">02</span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-search"/></svg></span><h3>Imaging review</h3><p>MRI, CT and nerve studies reviewed in depth, with a second opinion if you need one.</p></article><article class="jcard" data-reveal="flip"><span class="jnum">03</span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-list"/></svg></span><h3>Personal plan</h3><p>Non-surgical options first. If surgery helps, the least invasive route is chosen.</p></article><article class="jcard" data-reveal="flip"><span class="jnum">04</span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-shield"/></svg></span><h3>Surgery</h3><p>Precision surgery with navigation, microscope or endoscope and nerve monitoring.</p></article><article class="jcard" data-reveal="flip"><span class="jnum">05</span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spark"/></svg></span><h3>Recovery</h3><p>Early walking, a rehab plan and follow-up until you are back to your life.</p></article>
     </div>
   </div>
 </section>
@@ -180,9 +178,9 @@
 </section>
 <section class="section" style="padding-block:0">
   <div class="wrap">
-    <div class="cta-band" data-reveal="iris">
+    <div class="cta-band">
       <span class="eyebrow">Consultation</span>
-      <h2 class="h2" data-split>Your scans deserve an expert eye.</h2>
+      <h2 class="h2">Your scans deserve an expert eye.</h2>
       <p>Share your MRI or CT reports and get a clear, honest opinion on whether you need surgery, and if you do, the least invasive way to do it.</p>
       <div class="hero-actions">
         <a class="btn btn--glow" href="tel:+919914208940" data-phone><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>Call 99142 08940</a>
@@ -213,9 +211,9 @@
         <li><a href="mailto:care@drsachingr.com" data-email="text">care@drsachingr.com</a></li>
         <li>Mon–Sat · 10:00 am – 6:00 pm</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© <span data-year>2026</span> Dr Sachin G R. All rights reserved.</span><span>Information on this site is educational and not a substitute for medical advice.</span><span class="credit">3D head: <a href="https://www.ir-ltd.net/" target="_blank" rel="noopener">Lee Perry-Smith head scan</a>, CC BY 3.0 (via three.js).</span></div>
+    <div class="footer-bottom"><span>© <span data-year>2026</span> Dr Sachin G R. All rights reserved.</span><span>Information on this site is educational and not a substitute for medical advice.</span></div>
   </div>
 </footer>
-<script src="assets/js/main.js" defer></script><script type="module" src="assets/js/hero3d.js"></script>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
