@@ -5,7 +5,7 @@ Static site with no build step: open `index.html` or serve the folder with any s
 (GitHub Pages, Netlify, Vercel, cPanel…).
 
 ```
-index.html              Home: hero, stats, interactive body map, why, journey, testimonials, FAQs
+index.html              Home: animated brain hero, stats, interactive body map, why, journey, testimonials, FAQs
 about.html              About: bio, qualifications, training world map, philosophy
 services.html           Treatments: interactive body map + searchable A–Z directory (25 treatments)
 contact.html            Contact: call / WhatsApp / email, hours, appointment form (opens WhatsApp)
@@ -26,7 +26,7 @@ assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Ap
 - **Placeholders to replace before launch:** the email address (`care@drsachingr.com`) and the
   consultation hours on the Contact page and in the footer are dummy values.
 - **Doctor photo:** add `assets/img/dr-sachin.webp` (portrait, about 1000×1250, subject centred).
-  It is used on Home and About automatically. Until it exists, a stylised hologram bust is shown.
+  It is used on the About page automatically. Until it exists, a stylised placeholder bust is shown.
 - **Treatments:** edit `assets/js/treatments.js`. Each treatment gets its own shareable link,
   e.g. `services.html#t-endoscopic-spine-surgery`.
 - **Testimonials** on the home page are **samples** (marked "Sample"). Replace them with genuine

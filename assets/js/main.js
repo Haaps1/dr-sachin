@@ -132,107 +132,56 @@ window.SITE = {
     new MutationObserver((ms) => ms.forEach((m) => m.addedNodes.forEach((n) => n.nodeType === 1 && n.querySelectorAll && n.querySelectorAll('[data-magnetic]').forEach(mag)))).observe(d.body, { childList: true, subtree: true });
   }
 
-  /* ---------- Neural network canvas ---------- */
-  function Neural(cv) {
-    const ctx = cv.getContext('2d');
-    const small = innerWidth < 700;
-    const N = +cv.dataset.nodes || (small ? 46 : 90);
-    let w, h, dpr, nodes = [], sparks = [], mouse = { x: -9999, y: -9999 }, visible = true, last = 0;
-    const resize = () => {
-      dpr = Math.min(devicePixelRatio || 1, 2); w = cv.offsetWidth; h = cv.offsetHeight;
-      cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    for (let i = 0; i < N; i++) nodes.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, r: 1 + Math.random() * 1.8 });
-    const LINK = small ? 110 : 150;
-    addEventListener('resize', resize);
-    cv.parentElement.addEventListener('pointermove', (e) => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
-    cv.parentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) requestAnimationFrame(frame); }).observe(cv);
-    function frame(t) {
-      if (!visible || d.hidden) return;
-      requestAnimationFrame(frame);
-      if (small && t - last < 32) return; last = t;
-      ctx.clearRect(0, 0, w, h);
-      for (const n of nodes) {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > w) n.vx *= -1; if (n.y < 0 || n.y > h) n.vy *= -1;
-        const dx = mouse.x - n.x, dy = mouse.y - n.y, dist = Math.hypot(dx, dy);
-        if (dist < 180) { n.x += dx * 0.004; n.y += dy * 0.004; }
-      }
-      for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
-        const a = nodes[i], b = nodes[j], dd = Math.hypot(a.x - b.x, a.y - b.y);
-        if (dd < LINK) {
-          const near = Math.hypot(mouse.x - a.x, mouse.y - a.y) < 180;
-          ctx.strokeStyle = `rgba(${near ? '125,211,252' : '56,189,248'},${(1 - dd / LINK) * (near ? 0.5 : 0.22)})`;
-          ctx.lineWidth = near ? 1 : 0.7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          if (sparks.length < 14 && Math.random() < 0.0009) sparks.push({ a, b, k: 0 });
-        }
-      }
-      for (const n of nodes) { ctx.fillStyle = 'rgba(186,230,253,.8)'; ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 7); ctx.fill(); }
-      sparks = sparks.filter((s) => (s.k += 0.022) < 1);
-      for (const s of sparks) {
-        const x = s.a.x + (s.b.x - s.a.x) * s.k, y = s.a.y + (s.b.y - s.a.y) * s.k;
-        const g = ctx.createRadialGradient(x, y, 0, x, y, 10); g.addColorStop(0, 'rgba(224,247,255,.95)'); g.addColorStop(1, 'rgba(56,189,248,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 10, 0, 7); ctx.fill();
-      }
-    }
-    if (reduce) { visible = true; frame(0); visible = false; } else requestAnimationFrame(frame);
-    d.addEventListener('visibilitychange', () => { if (!d.hidden && visible) requestAnimationFrame(frame); });
-  }
-  $$('canvas.neural').forEach(Neural);
-
   /* ---------- Portrait fallback ---------- */
   $$('img[data-fallback]').forEach((img) => {
     const hide = () => { img.remove(); };
     if (img.complete && !img.naturalWidth) hide(); else img.addEventListener('error', hide);
   });
 
-  /* ---------- 3D orbit of credential chips ---------- */
-  $$('[data-orbit]').forEach((stage) => {
-    const items = $$('.orbiter', stage); if (!items.length) return;
-    let a = 0, tx = 0, ty = 0, cx = 0, cy = 0, run = true;
-    const portrait = $('.portrait', stage);
-    new IntersectionObserver(([e]) => { run = e.isIntersecting; if (run) requestAnimationFrame(tick); }).observe(stage);
-    if (fine) stage.addEventListener('pointermove', (e) => { const r = stage.getBoundingClientRect(); tx = ((e.clientX - r.left) / r.width - 0.5); ty = ((e.clientY - r.top) / r.height - 0.5); });
-    function tick() {
-      if (!run) return; if (!reduce) requestAnimationFrame(tick);
-      a += reduce ? 0 : 0.0032; cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
-      const W = stage.offsetWidth, R = W * (W < 380 ? 0.36 : 0.46), tilt = W < 380 ? 0.55 : 0.4;
-      items.forEach((it, i) => {
-        const ang = a + (i / items.length) * Math.PI * 2, z = Math.sin(ang);
-        const x = Math.cos(ang) * R, y = z * R * tilt + R * 0.12;
-        const s = 0.78 + (z + 1) * 0.16;
-        it.style.transform = `translate(${x}px, ${y}px) scale(${s.toFixed(3)})`;
-        it.style.zIndex = z > 0 ? 6 : 3; it.style.opacity = (0.55 + (z + 1) * 0.225).toFixed(2);
-        it.style.filter = z < -0.2 ? `blur(${(-z * 1.6).toFixed(1)}px)` : '';
+  /* ---------- Hero brain: lobes highlight in turn; hover, tap or focus to explore ---------- */
+  $$('[data-brain]').forEach((stage) => {
+    const lobes = $$('.lobe', stage), card = $('.lobe-card', stage), pin = $('.lobe-pin', stage), svg = $('svg', stage);
+    if (!lobes.length) return;
+    let i = 0, timer, visible = true;
+    const show = (k) => {
+      i = k; const l = lobes[k];
+      lobes.forEach((x) => x.classList.toggle('on', x === l));
+      $('b', card).textContent = l.dataset.name; $('small', card).textContent = l.dataset.info;
+      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
+      pin.style.transform = `translate(${l.dataset.x}px, ${l.dataset.y}px)`;
+    };
+    const play = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => { if (visible) show((i + 1) % lobes.length); }, 3200); };
+    lobes.forEach((l, k) => {
+      l.addEventListener('pointerenter', () => { show(k); clearInterval(timer); });
+      l.addEventListener('pointerleave', play);
+      l.addEventListener('focus', () => { show(k); clearInterval(timer); });
+      l.addEventListener('blur', play);
+      l.addEventListener('click', () => { show(k); play(); });
+    });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
+    if (fine && !reduce) {
+      stage.addEventListener('pointermove', (e) => {
+        const r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        svg.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 6}deg)`;
       });
-      if (portrait) portrait.style.transform = `rotateY(${cx * 12}deg) rotateX(${-cy * 8}deg)`;
+      stage.addEventListener('pointerleave', () => { svg.style.transform = ''; });
     }
-    requestAnimationFrame(tick);
+    show(0); play();
   });
 
   /* ---------- Scroll-linked progress: spine indicator, top bar, journey, neuron drawing ---------- */
-  const spine = $('.spine-progress'), topbar = $('.top-progress');
-  if (spine) for (let i = 0; i < 18; i++) spine.append(d.createElement('i'));
+  const topbar = $('.top-progress');
   const journeys = $$('[data-progress]');
-  const draws = $$('.neuron-art .draw');
-  draws.forEach((p) => p.style.setProperty('--len', Math.ceil(p.getTotalLength())));
   let ticking = false;
   function onProgress() {
     ticking = false;
     const max = root.scrollHeight - innerHeight, p = max > 0 ? scrollY / max : 0;
     if (topbar) topbar.style.setProperty('--p', p.toFixed(4));
-    if (spine) { const lit = Math.round(p * 18); $$('i', spine).forEach((v, i) => v.classList.toggle('on', i < lit)); }
     journeys.forEach((j) => {
       const r = j.getBoundingClientRect(), k = clamp((innerHeight * 0.8 - r.top) / (r.height + innerHeight * 0.2), 0, 1);
       j.style.setProperty('--p', k.toFixed(3));
       const steps = $$('.step', j); steps.forEach((s, i) => s.classList.toggle('lit', k >= (i + 0.5) / steps.length - 0.05));
       const fg = $('.journey-line .fg', j); if (fg) fg.style.setProperty('--p', k.toFixed(3));
-    });
-    draws.forEach((p) => {
-      const r = p.ownerSVGElement.getBoundingClientRect(), k = clamp((innerHeight - r.top) / (innerHeight * 0.9), 0, 1);
-      p.style.setProperty('--p', k.toFixed(3));
     });
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onProgress); } }, { passive: true });
@@ -249,7 +198,7 @@ window.SITE = {
         let off = k - i; if (off > n / 2) off -= n; if (off < -n / 2) off += n;
         const a = Math.abs(off);
         c.style.transform = `translateX(${off * 62}%) translateZ(${-a * 180}px) rotateY(${-off * 28}deg) scale(${1 - a * 0.06})`;
-        c.style.opacity = a > 2 ? 0 : 1 - a * 0.35; c.style.filter = a ? `blur(${a * 2}px)` : ''; c.style.zIndex = 10 - a;
+        c.style.opacity = a > 2 ? 0 : 1 - a * 0.35; c.style.zIndex = 10 - a;
         c.setAttribute('aria-hidden', String(!!off)); c.style.pointerEvents = off ? 'none' : '';
       });
       $$('button', dots).forEach((b, k) => k === i ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current'));
@@ -276,7 +225,7 @@ window.SITE = {
         det.classList.add('closing'); a.onfinish = () => { det.open = false; det.classList.remove('closing'); };
       } else {
         det.open = true;
-        ans.animate([{ height: '0px', opacity: 0, filter: 'blur(4px)' }, { height: ans.offsetHeight + 'px', opacity: 1, filter: 'blur(0)' }], { duration: 560, easing: 'cubic-bezier(.22,1,.36,1)' });
+        ans.animate([{ height: '0px', opacity: 0 }, { height: ans.offsetHeight + 'px', opacity: 1 }], { duration: 560, easing: 'cubic-bezier(.22,1,.36,1)' });
       }
     });
   });
