@@ -955,3 +955,13 @@ body.lock { overflow: hidden; }
 .hero-side .fc1 { top: auto; right: 0; bottom: 4%; }
 .hero-side .fc2 { left: -4%; bottom: 20%; }
 @media (max-width: 560px) { .hero-side .fc1 { right: 0; bottom: 6%; } .hero-side .fc2 { left: 0; bottom: 26%; } }
+
+/* Hero image: smaller, kept inside the content area below the header */
+.hero-img { top: calc(var(--header-h) + 28px); bottom: 90px; right: max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter))); width: min(44%, 560px); overflow: visible; }
+.hero-img img { object-fit: contain; object-position: center; -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 98%); mask-image: radial-gradient(closest-side, #000 55%, transparent 98%); }
+.hero-img::before { display: none; }
+@media (max-width: 960px) {
+  .hero-img { top: calc(var(--header-h) + 8px); bottom: auto; left: 50%; right: auto; transform: translateX(-50%); width: min(88%, 420px); height: 320px; }
+  .hero-side { min-height: 320px; }
+}
+@media (max-width: 560px) { .hero-img { height: 270px; } .hero-side { min-height: 270px; } }
