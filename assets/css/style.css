@@ -1073,3 +1073,7 @@ body.lock { overflow: hidden; }
 .jcard { overflow: hidden; }
 .jcard::before { left: 0; right: 0; border-radius: 0; }
 .jcard:not(:last-child)::after, .jcard:nth-child(3)::after { display: none !important; }
+
+/* Stats cards: no top border */
+.st { border-top: 0; }
+.st::after { display: none; }
