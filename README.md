@@ -5,7 +5,7 @@ Static site with no build step: open `index.html` or serve the folder with any s
 (GitHub Pages, Netlify, Vercel, cPanel…).
 
 ```
-index.html              Home: 3D brain hero, specialities, conditions, technology, why, journey, warning signs,
+index.html              Home: brain image hero, specialities, technology, why, journey, warning signs,
                         second opinion, testimonials, FAQs
 about.html              About: bio, qualifications, training world map, philosophy
 treatments/brain-tumor-surgery.html   Brain Tumor Surgery (the only treatment page for now)
@@ -14,9 +14,7 @@ manifest.webmanifest    Lets phones "Add to Home Screen" like an app
 assets/css/style.css    Design tokens (colours, fonts), layout, responsive rules, motion
 assets/js/main.js       Shared interactions + CONTACT DETAILS (SITE object at the top)
 assets/js/treatments.js All treatment content (name, summary, overview, when needed, approach, recovery)
-assets/js/hero3d.js     3D glowing brain in a transparent head (three.js + bloom); SVG fallback without WebGL
-assets/vendor/          three.js, its post-processing modules and delaunator (MIT licence, self-hosted)
-assets/img/             Logo mark and icon sprite
+assets/img/             Logo mark, icon sprite and hero-brain.webp (hero image supplied by the client)
 assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Apache 2.0)
 ```
 
@@ -31,6 +29,8 @@ assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Ap
   It is used on the About page automatically. Until it exists, a stylised placeholder bust is shown.
 - **Treatments:** only Brain Tumor Surgery has a page so far. The other treatments are listed on the
   home page without links until their pages are written.
+- **Hero image:** `assets/img/hero-brain.webp`, used on Home and Brain Tumor Surgery. Make sure
+  you hold the licence for it before launch.
 - **Testimonials** on the home page are **samples** (marked "Sample"). Replace them with genuine
   reviews shared with the patient's consent. See the comment above the section in `index.html`.
 
