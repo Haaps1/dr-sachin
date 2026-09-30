@@ -972,3 +972,11 @@ body.lock { overflow: hidden; }
 .hero-img img { animation: none; transform-style: preserve-3d; transition: transform .25s ease-out; will-change: transform; cursor: grab; pointer-events: auto; touch-action: pan-y; }
 .hero-img.dragging img { cursor: grabbing; transition: none; }
 .hero-img { pointer-events: none; }
+
+/* 3D head canvas (replaces the image when WebGL is available) */
+.hero-canvas3d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: auto; cursor: grab; touch-action: pan-y; -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent 100%); mask-image: radial-gradient(closest-side, #000 78%, transparent 100%); outline: none; }
+.hero-img.dragging .hero-canvas3d { cursor: grabbing; }
+.hero-img.is-3d img { display: none; }
+.hero-img.is-3d::after { content: 'Drag to rotate 360°'; position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); font: 500 12px var(--head); color: #8fb0d0; letter-spacing: .04em; white-space: nowrap; }
+.credit { font-size: 12px; }
+.credit a { text-decoration: underline; }
