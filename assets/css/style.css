@@ -1068,3 +1068,8 @@ body.lock { overflow: hidden; }
 .bt.b6 { grid-column: 1 / -1; flex-direction: row; align-items: center; background: linear-gradient(120deg, #e0f2fe, #fff 70%); }
 @media (max-width: 960px) { .bento { grid-template-columns: 1fr 1fr; } .bt.b1 { grid-column: 1 / -1; grid-row: auto; min-height: 260px; } }
 @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } .bt.b6 { flex-direction: column; align-items: flex-start; } }
+
+/* Journey cards: full-width top bar that follows the rounded corners, no arrows */
+.jcard { overflow: hidden; }
+.jcard::before { left: 0; right: 0; border-radius: 0; }
+.jcard:not(:last-child)::after, .jcard:nth-child(3)::after { display: none !important; }
