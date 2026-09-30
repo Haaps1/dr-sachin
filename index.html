@@ -18,6 +18,8 @@
 <link rel="preload" href="assets/fonts/poppins-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Physician", "name": "Dr Sachin G R", "description": "Senior neurosurgeon specialising in brain and spine surgery, minimally invasive and endoscopic spine surgery, skull base and paediatric neurosurgery.", "medicalSpecialty": ["Neurosurgery", "Spine Surgery"], "telephone": "+91-99142-08940", "alumniOf": [{"@type": "CollegeOrUniversity", "name": "PGIMER Chandigarh"}], "knowsAbout": ["Brain tumor surgery", "Skull base surgery", "Minimally invasive spine surgery", "Endoscopic spine surgery", "Pediatric neurosurgery"]}</script>
+<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js"}}</script>
+<link rel="modulepreload" href="assets/vendor/three.module.min.js">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -25,7 +27,7 @@
 <header class="header header--dark">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Dr Sachin G R, home"><img src="assets/img/logo-mark.svg" alt="" width="44" height="44"><span><b>Dr Sachin G R</b><small>Neurosurgeon · Brain &amp; Spine</small></span></a>
-    <nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="index.html#treatments">Treatments</a><a href="contact.html">Contact</a></nav>
+    <nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="treatments/brain-tumor-surgery.html">Treatments</a><a href="contact.html">Contact</a></nav>
     <div class="header-cta">
       <a class="btn btn--glow" href="tel:+919914208940" data-phone><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>99142 08940</a>
       <a class="icon-btn header-call-m" href="tel:+919914208940" data-phone aria-label="Call Dr Sachin"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg></a>
@@ -43,7 +45,7 @@
       <p class="hero-sub" data-reveal="focus" style="--d:.5s"><strong>Dr Sachin G R</strong> is a PGIMER Chandigarh–trained neurosurgeon with fellowships in Japan and South Korea. He specialises in minimally invasive brain and spine surgery.</p>
       <div class="hero-actions" data-reveal="focus" style="--d:.7s">
         <a class="btn btn--glow" href="tel:+919914208940" data-phone><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>Book a consultation</a>
-        <a class="btn btn--ghost" href="#treatments"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-grid"/></svg>Explore treatments</a>
+        <a class="btn btn--ghost" href="#conditions"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-grid"/></svg>Conditions we treat</a>
       </div>
       <div class="creds" data-stagger>
         <span class="cred" data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-award"/></svg>MS, MCh (Neurosurgery)</span>
@@ -51,9 +53,8 @@
         <span class="cred" data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg>Fellowship · South Korea</span>
       </div>
     </div>
-    <div class="brain-stage" data-brain data-reveal="focus" style="--d:.2s">
-      <span class="brain-halo" aria-hidden="true"></span>
-      <div class="brain-float"><svg class="brain" viewBox="70 40 470 560" role="img" aria-label="Human head with the brain highlighted: frontal, parietal, temporal and occipital lobes, cerebellum and brainstem">
+    <div class="brain-stage hero-3d" data-reveal="focus" style="--d:.2s">
+      <div class="brain-float fallback"><svg class="brain" viewBox="70 40 470 560" role="img" aria-label="Human head with the brain highlighted: frontal, parietal, temporal and occipital lobes, cerebellum and brainstem">
       <defs>
         <clipPath id="brainClip"><path d="M72 238C60 170 110 105 185 75C250 45 340 38 410 58C480 78 540 130 556 205C566 250 552 290 520 305C490 318 455 318 425 330C390 345 340 360 290 356C245 352 212 336 204 312C198 296 206 286 196 282C170 290 130 296 100 284C78 275 70 258 72 238Z"/></clipPath>
         <radialGradient id="headFill" cx=".46" cy=".36" r=".7"><stop offset="0" stop-color="#3b82d6" stop-opacity=".42"/><stop offset=".7" stop-color="#1b4f96" stop-opacity=".22"/><stop offset="1" stop-color="#0b2a55" stop-opacity=".1"/></radialGradient>
@@ -87,7 +88,6 @@
         <g class="lobe-pin" aria-hidden="true"><circle class="pr" r="16"/><circle class="pc" r="7"/></g>
       </g>
     </svg></div>
-      <div class="lobe-card" aria-live="polite"><span class="lobe-dot"></span><span><b>Frontal lobe</b><small>Movement, speech, planning and personality</small></span></div>
       <div class="float-card fc1"><span class="dot"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-award"/></svg></span><span>15+ years<small>Brain &amp; spine surgery</small></span></div>
       <div class="float-card fc2"><span class="dot"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-globe"/></svg></span><span>Trained in 4 countries<small>India · Japan · Canada · Korea</small></span></div>
     </div>
@@ -99,7 +99,7 @@
   <div class="stats" data-reveal="flip">
     <div class="stat"><b><span data-count="15">15</span><sup>+</sup></b><span>Years operating on brain &amp; spine</span></div>
     <div class="stat"><b><span data-count="4">4</span></b><span>Countries of advanced training</span></div>
-    <div class="stat"><b><span data-count="25">25</span></b><span>Specialised treatments</span></div>
+    <div class="stat"><b><span data-count="25">25</span><sup>+</sup></b><span>Brain, spine &amp; nerve procedures</span></div>
     <div class="stat"><b>24<sup>×</sup>7</b><span>Emergency neuro-trauma care</span></div>
   </div>
 </div>
@@ -109,35 +109,39 @@
 </div></div>
 
 <section class="section specs-sec">
-  <i class="deco plus p1"></i><i class="deco plus p2"></i><i class="deco dots d1"></i>
+  <i class="deco plus p1"></i><i class="deco plus p2"></i>
   <div class="wrap">
     <div class="head-row"><div><span class="eyebrow">Specialities</span><h2 class="h2" data-split>Complete care for the <em>brain, spine and nerves.</em></h2></div>
     <p class="lead" data-reveal="focus">Six areas of expertise, one surgeon who looks after you from the first scan to full recovery.</p></div>
     <div class="specs" data-stagger><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
       <div class="spec-top"><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg></span><span class="spec-n">10<small>treatments</small></span></div>
-      <h3>Brain</h3><p>Tumours, trauma, epilepsy and movement disorders of the brain.</p><ul><li><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/endoscopic-brain-spine-surgery.html">Endoscopic Brain & Spine Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/neuro-trauma.html">Neuro Trauma<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/epilepsy-surgery.html">Epilepsy Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
+      <h3>Brain</h3><p>Tumours, trauma, epilepsy and movement disorders of the brain.</p><ul><li><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><span>Endoscopic Brain & Spine Surgery</span></li><li><span>Neuro Trauma</span></li><li><span>Epilepsy Surgery</span></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
       <div class="spec-top"><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-skullbase"/></svg></span><span class="spec-n">03<small>treatments</small></span></div>
-      <h3>Skull Base</h3><p>Deep-seated lesions at the base of the skull, reached through minimal corridors.</p><ul><li><a href="treatments/skull-base-surgery.html">Skull Base Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/pituitary-tumors.html">Pituitary Tumors<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/csf-leak-repair.html">CSF Leak & Repair<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
+      <h3>Skull Base</h3><p>Deep-seated lesions at the base of the skull, reached through minimal corridors.</p><ul><li><span>Skull Base Surgery</span></li><li><span>Pituitary Tumors</span></li><li><span>CSF Leak & Repair</span></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
       <div class="spec-top"><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-vessel"/></svg></span><span class="spec-n">02<small>treatments</small></span></div>
-      <h3>Neurovascular</h3><p>Stroke, aneurysms and abnormal blood vessels of the brain.</p><ul><li><a href="treatments/stroke-neurovascular.html">Stroke & Neurovascular Disorders<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/brain-aneurysm-avm.html">Brain Aneurysm & AVM Treatment<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
+      <h3>Neurovascular</h3><p>Stroke, aneurysms and abnormal blood vessels of the brain.</p><ul><li><span>Stroke & Neurovascular Disorders</span></li><li><span>Brain Aneurysm & AVM Treatment</span></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
       <div class="spec-top"><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><span class="spec-n">06<small>treatments</small></span></div>
-      <h3>Spine</h3><p>Neck and back conditions, from keyhole endoscopy to complex reconstruction.</p><ul><li><a href="treatments/spine-surgery.html">Spine Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/minimally-invasive-spine-surgery.html">Minimally Invasive Spine Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/spine-care.html">Spine Care<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/spine-fusion.html">Spine Fusion<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
+      <h3>Spine</h3><p>Neck and back conditions, from keyhole endoscopy to complex reconstruction.</p><ul><li><span>Spine Surgery</span></li><li><span>Minimally Invasive Spine Surgery</span></li><li><span>Spine Care</span></li><li><span>Spine Fusion</span></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
       <div class="spec-top"><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-nerve"/></svg></span><span class="spec-n">02<small>treatments</small></span></div>
-      <h3>Nerves & Pain</h3><p>Peripheral nerve injuries, entrapments and chronic pain.</p><ul><li><a href="treatments/peripheral-nerve-surgery.html">Peripheral Nerve Surgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/pain-management.html">Pain Management<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
+      <h3>Nerves & Pain</h3><p>Peripheral nerve injuries, entrapments and chronic pain.</p><ul><li><span>Peripheral Nerve Surgery</span></li><li><span>Pain Management</span></li></ul></article><article class="spec" data-tilt data-reveal="flip"><span class="glare"></span>
       <div class="spec-top"><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-child"/></svg></span><span class="spec-n">02<small>treatments</small></span></div>
-      <h3>Paediatric</h3><p>Brain and spine care for infants, children and teenagers.</p><ul><li><a href="treatments/pediatric-neurosurgery.html">Pediatric Neurosurgery<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li><li><a href="treatments/pediatric-brain-tumors.html">Pediatric Brain Tumors<svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></a></li></ul></article></div>
+      <h3>Paediatric</h3><p>Brain and spine care for infants, children and teenagers.</p><ul><li><span>Pediatric Neurosurgery</span></li><li><span>Pediatric Brain Tumors</span></li></ul></article></div>
   </div>
 </section>
-<section class="section" id="treatments" style="padding-top:clamp(40px,6vw,72px)">
+<section class="section" id="conditions">
   <div class="wrap">
-    <div class="head-row">
-      <div><span class="eyebrow">Interactive treatment map</span><h2 class="h2" data-split>Explore care, <em>region by region.</em></h2></div>
-      <p class="lead" data-reveal="focus">Drag to turn the 3D body, tap a glowing point or choose an area to see how Dr Sachin treats conditions of the brain, skull base, blood vessels, spine and nerves.</p>
-    </div>
-    <div data-explorer></div>
+    <div class="head-row"><div><span class="eyebrow">Conditions we treat</span><h2 class="h2" data-split>From headaches to <em>complex tumours.</em></h2></div>
+    <p class="lead" data-reveal="focus">Expert diagnosis and treatment for conditions of the brain, spine and nerves, in adults and children.</p></div>
+    <div class="conds" data-stagger><a class="cond live" href="treatments/brain-tumor-surgery.html" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg></span><span><b>Brain tumours</b><small>Gliomas, meningiomas, metastases</small></span><span class="c-go"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur"/></svg></span></a><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-skullbase"/></svg></span><span><b>Pituitary & skull base tumours</b><small>Vision and hormone problems</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><span><b>Slipped disc & sciatica</b><small>Back pain spreading to the leg</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><span><b>Neck pain & cervical myelopathy</b><small>Arm tingling, weak grip, imbalance</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><span><b>Lumbar canal stenosis</b><small>Leg pain on walking</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg></span><span><b>Head injury</b><small>Concussion, bleeding in the brain</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-vessel"/></svg></span><span><b>Stroke & brain haemorrhage</b><small>Sudden weakness or speech loss</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-vessel"/></svg></span><span><b>Aneurysm & AVM</b><small>Sudden severe headache</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg></span><span><b>Epilepsy</b><small>Seizures not controlled by medicines</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-nerve"/></svg></span><span><b>Parkinson's & tremor</b><small>Deep brain stimulation</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-nerve"/></svg></span><span><b>Trigeminal neuralgia</b><small>Electric-shock facial pain</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-child"/></svg></span><span><b>Hydrocephalus</b><small>Fluid build-up in the brain</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><span><b>Spinal fractures & instability</b><small>After falls or accidents</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><span><b>Scoliosis</b><small>Curvature of the spine</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-nerve"/></svg></span><span><b>Carpal tunnel & nerve compression</b><small>Numb hands, weak fingers</small></span></div><div class="cond" data-reveal="focus"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-child"/></svg></span><span><b>Children's brain & spine</b><small>Spina bifida, craniosynostosis</small></span></div></div>
   </div>
 </section>
-
+<section class="section section--dark tech-sec">
+  <div class="wrap">
+    <div class="head-row"><div><span class="eyebrow">Advanced technology</span><h2 class="h2" data-split>Precision tools. <em>Safer surgery.</em></h2></div>
+    <p class="lead" data-reveal="focus">Techniques learned at leading centres in Japan, South Korea and Canada, used to make every operation smaller, safer and faster to recover from.</p></div>
+    <div class="techs" data-stagger><article class="tech" data-reveal="flip" data-tilt><span class="glare"></span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spark"/></svg></span><h3>Neuronavigation</h3><p>GPS-like guidance that maps the safest route to a tumour on your own MRI, in real time.</p></article><article class="tech" data-reveal="flip" data-tilt><span class="glare"></span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-search"/></svg></span><h3>High-definition microscope</h3><p>Magnified, brightly lit views to separate tumour from healthy brain and nerves.</p></article><article class="tech" data-reveal="flip" data-tilt><span class="glare"></span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg></span><h3>Neuro-endoscopy</h3><p>A slim camera reaches deep areas through the nose or tiny openings, without large cuts.</p></article><article class="tech" data-reveal="flip" data-tilt><span class="glare"></span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-shield"/></svg></span><h3>Neuromonitoring</h3><p>Nerve signals are watched throughout surgery to protect movement, speech and feeling.</p></article><article class="tech" data-reveal="flip" data-tilt><span class="glare"></span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg></span><h3>Endoscopic & tubular spine</h3><p>Disc and nerve surgery through 8–20 mm openings, often as a day procedure.</p></article><article class="tech" data-reveal="flip" data-tilt><span class="glare"></span><span class="ic3d"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-user"/></svg></span><h3>Awake brain mapping</h3><p>For tumours near speech or movement areas, you help the surgeon protect them in real time.</p></article></div>
+  </div>
+</section>
 <section class="section" style="padding-top:0">
   <div class="wrap why">
     <div class="why-sticky">
@@ -170,6 +174,31 @@
   </div>
 </section>
 
+<section class="section signs-sec">
+  <div class="wrap signs-grid">
+    <div>
+      <span class="eyebrow">When to see a neurosurgeon</span>
+      <h2 class="h2" data-split>Symptoms you <em>should not ignore.</em></h2>
+      <ul class="sym" data-stagger><li data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Headaches that are new, frequent or worse in the morning</li><li data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Back or neck pain spreading to the arms or legs</li><li data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Numbness, tingling or weakness in the hands or feet</li><li data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Seizures, fainting spells or sudden confusion</li><li data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Blurred or double vision, or loss of balance</li><li data-reveal="focus"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Difficulty walking, clumsiness or frequent falls</li></ul>
+    </div>
+    <aside class="emergency" data-reveal="flip">
+      <span class="em-badge"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>Emergency · 24×7</span>
+      <h3>Call immediately if you notice</h3>
+      <ul><li>The worst, sudden headache of your life</li><li>Sudden weakness of the face, arm or leg, or slurred speech</li><li>Loss of bladder or bowel control with back pain</li><li>Head injury with vomiting, drowsiness or a seizure</li></ul>
+      <a class="btn btn--glow" href="tel:+919914208940" data-phone><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>Call 99142 08940</a>
+    </aside>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="second" data-reveal="flip">
+      <div class="second-head"><span class="eyebrow">Second opinion</span><h2 class="h2" data-split>Told you need surgery? <em>Get a second opinion.</em></h2>
+      <p>Many patients are advised surgery that they may not need. Share your reports and Dr Sachin will review them personally.</p></div>
+      <ol class="second-steps"><li><span>1</span><b>Send your reports</b><small>MRI / CT images and reports on WhatsApp</small></li><li><span>2</span><b>Expert review</b><small>Dr Sachin studies your scans and history</small></li><li><span>3</span><b>Clear advice</b><small>Surgery, non-surgical care or monitoring</small></li></ol>
+      <a class="btn btn--glow" href="https://wa.me/919914208940" data-wa="Hello Dr Sachin, I would like a second opinion on my reports." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-chat"/></svg>Share reports on WhatsApp</a>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="wrap">
     <div class="head-row" style="justify-content:center;text-align:center">
@@ -187,7 +216,7 @@
   <div class="wrap faq-wrap">
     <div><span class="eyebrow">FAQs</span><h2 class="h2" data-split>Questions patients <em>often ask.</em></h2><p class="lead" data-reveal="focus">Can't find your answer? Call or WhatsApp and we will help.</p>
       <div class="hero-actions"><a class="btn btn--primary" href="https://wa.me/919914208940" data-wa="Hello Dr Sachin, I have a question." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-chat"/></svg>Ask on WhatsApp</a></div></div>
-    <div class="faq" data-stagger><details data-reveal="flip"><summary>Do all brain and spine problems need surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>No. Most back and neck problems, and many brain conditions, are managed with medicines, physiotherapy or observation. Dr Sachin recommends surgery only when it clearly offers a better outcome than the alternatives.</p></div></details><details data-reveal="flip"><summary>What is minimally invasive or endoscopic spine surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>It is surgery done through small incisions using tubes or a camera, moving muscles aside rather than cutting them. Patients usually have less pain, smaller scars and go home sooner, often within a day.</p></div></details><details data-reveal="flip"><summary>How soon can I walk after spine surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Most patients stand and walk within a few hours to a day. Desk work usually resumes in 1–4 weeks depending on the procedure.</p></div></details><details data-reveal="flip"><summary>Can I get a second opinion on my MRI?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Yes. You can share your MRI or CT reports and images on WhatsApp before visiting. Dr Sachin will advise whether an in-person consultation is needed.</p></div></details><details data-reveal="flip"><summary>Is brain surgery safe?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Modern neurosurgery uses neuronavigation, the operating microscope, endoscopes and nerve monitoring to make operations far safer than before. Your specific risks and benefits are discussed in detail before any decision.</p></div></details><details data-reveal="flip"><summary>Do you treat children?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Yes. Dr Sachin trained in paediatric neurosurgery at SickKids, Toronto, and treats hydrocephalus, spina bifida, craniosynostosis and brain tumours in children.</p></div></details><details data-reveal="flip"><summary>What should I bring to my first consultation?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Bring all scans (films or CDs), reports, a list of your medicines and any previous surgery records. A family member is welcome to join you.</p></div></details></div>
+    <div class="faq" data-stagger><details data-reveal="flip"><summary>Do all brain and spine problems need surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>No. Most back and neck problems, and many brain conditions, are managed with medicines, physiotherapy or observation. Dr Sachin recommends surgery only when it clearly offers a better outcome than the alternatives.</p></div></details><details data-reveal="flip"><summary>What is minimally invasive or endoscopic spine surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>It is surgery done through small incisions using tubes or a camera, moving muscles aside rather than cutting them. Patients usually have less pain, smaller scars and go home sooner, often within a day.</p></div></details><details data-reveal="flip"><summary>How soon can I walk after spine surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Most patients stand and walk within a few hours to a day. Desk work usually resumes in 1–4 weeks depending on the procedure.</p></div></details><details data-reveal="flip"><summary>Can I get a second opinion on my MRI?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Yes. You can share your MRI or CT reports and images on WhatsApp before visiting. Dr Sachin will advise whether an in-person consultation is needed.</p></div></details><details data-reveal="flip"><summary>Is brain surgery safe?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Modern neurosurgery uses neuronavigation, the operating microscope, endoscopes and nerve monitoring to make operations far safer than before. Your specific risks and benefits are discussed in detail before any decision.</p></div></details><details data-reveal="flip"><summary>Do you treat children?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Yes. Dr Sachin trained in paediatric neurosurgery at SickKids, Toronto, and treats hydrocephalus, spina bifida, craniosynostosis and brain tumours in children.</p></div></details><details data-reveal="flip"><summary>How long will I stay in hospital?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>It depends on the procedure. Endoscopic spine surgery is often a day-care or overnight stay, spine fusion usually 3–5 days, and brain surgery typically 4–7 days.</p></div></details><details data-reveal="flip"><summary>Is spine surgery safe for older patients?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Yes, when carefully planned. Minimally invasive and endoscopic techniques cause less blood loss and pain, which makes them well suited to older patients and those with other health conditions.</p></div></details><details data-reveal="flip"><summary>What is endoscopic brain surgery?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>It uses a thin camera passed through the nose or a small opening to reach deep areas such as the pituitary gland and skull base, avoiding large incisions and visible scars.</p></div></details><details data-reveal="flip"><summary>What should I bring to my first consultation?<i><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-plus"/></svg></i></summary><div class="ans"><p>Bring all scans (films or CDs), reports, a list of your medicines and any previous surgery records. A family member is welcome to join you.</p></div></details></div>
   </div>
 </section>
 <section class="section" style="padding-block:0">
@@ -208,7 +237,7 @@
 <nav class="tabbar" aria-label="App navigation">
   <a class="tab" href="index.html" aria-current="page"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-home"/></svg><span>Home</span></a><a class="tab" href="about.html"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-user"/></svg><span>About</span></a>
   <a class="tab tab--fab" href="tel:+919914208940" data-phone aria-label="Call now"><span class="fab"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg></span></a>
-  <a class="tab" href="index.html#treatments"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-grid"/></svg><span>Treatments</span></a><a class="tab" href="contact.html"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-mail"/></svg><span>Contact</span></a>
+  <a class="tab" href="treatments/brain-tumor-surgery.html"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-grid"/></svg><span>Treatments</span></a><a class="tab" href="contact.html"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-mail"/></svg><span>Contact</span></a>
 </nav>
 <footer class="footer">
   <div class="wrap">
@@ -217,8 +246,8 @@
         <a class="brand" href="index.html"><img src="assets/img/logo-mark.svg" alt="" width="44" height="44"><span><b>Dr Sachin G R</b><small>MS, MCh (Neurosurgery)</small></span></a>
         <p>Senior neurosurgeon trained at PGIMER Chandigarh, with fellowships in skull base surgery (Osaka, Japan), endoscopic spine surgery (South Korea) and paediatric neurosurgery (SickKids, Toronto).</p>
       </div>
-      <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="index.html#treatments">Treatments</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div><h4>Treatments</h4><ul><li><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery</a></li><li><a href="treatments/skull-base-surgery.html">Skull Base Surgery</a></li><li><a href="treatments/endoscopic-spine-surgery.html">Endoscopic Spine Surgery</a></li><li><a href="treatments/minimally-invasive-spine-surgery.html">Minimally Invasive Spine</a></li><li><a href="treatments/pediatric-neurosurgery.html">Pediatric Neurosurgery</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="treatments/brain-tumor-surgery.html">Treatments</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Treatments</h4><ul><li><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery</a></li><li>Skull Base Surgery</li><li>Endoscopic Spine Surgery</li><li>Minimally Invasive Spine</li><li>Pediatric Neurosurgery</li></ul></div>
       <div><h4>Get in touch</h4><ul>
         <li><a href="tel:+919914208940" data-phone>Call · 99142 08940</a></li>
         <li><a href="https://wa.me/919914208940" data-wa target="_blank" rel="noopener">WhatsApp · 99142 08940</a></li>
@@ -228,6 +257,6 @@
     <div class="footer-bottom"><span>© <span data-year>2026</span> Dr Sachin G R. All rights reserved.</span><span>Information on this site is educational and not a substitute for medical advice.</span></div>
   </div>
 </footer>
-<script src="assets/js/main.js" defer></script><script src="assets/js/treatments.js" defer></script><script src="assets/js/explorer.js" defer></script><script type="module" src="assets/js/body3d.js"></script>
+<script src="assets/js/main.js" defer></script><script type="module" src="assets/js/hero3d.js"></script>
 </body>
 </html>
