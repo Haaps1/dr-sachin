@@ -274,7 +274,11 @@ window.SITE = {
 
   /* ---------- Treatment article: highlight the section in view in the side contents ---------- */
   const dside = $('.dside');
-  if (dside) { const stick = () => dside.classList.toggle('stick', dside.offsetHeight < innerHeight - 100); stick(); addEventListener('resize', stick); }
+  if (dside) { // sticky: scrolls until its end is visible, then stays put until the article ends
+    const hh = () => parseInt(getComputedStyle(d.documentElement).getPropertyValue('--header-h')) || 76;
+    const stick = () => { const top = Math.min(hh() + 16, innerHeight - dside.offsetHeight - 16); dside.style.top = top + 'px'; };
+    stick(); addEventListener('resize', stick); d.fonts && d.fonts.ready.then(stick);
+  }
   const tocLinks = $$('.dtoc a');
   if (tocLinks.length) {
     const toc = $('.dtoc');

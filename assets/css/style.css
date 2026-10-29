@@ -1255,3 +1255,28 @@ body.lock { overflow: hidden; }
 .cta-grid { align-items: start; }
 .cta-doc { margin-top: 40px; }
 .why-doc { align-items: start; }
+
+/* ===== Fixes: no dash-like eyebrow lines, sticky sidebar, compact consultation ===== */
+.eyebrow::before { display: none; }
+.eyebrow { gap: 0; }
+.dside, .dside.stick { position: sticky; }
+.darticle { align-items: start; }
+.cta-band { padding: clamp(28px, 4vw, 48px); }
+.cta-band .h2 { max-width: none; font-size: clamp(26px, 3.4vw, 40px); }
+.cta-band > p, .close-txt { max-width: none; }
+.close-txt { columns: 2 320px; column-gap: 36px; margin-top: 6px; }
+.close-txt p { margin-top: 0; margin-bottom: 12px; break-inside: avoid; }
+.close-txt .close-strong { column-span: all; margin-top: 6px; }
+.cta-band .hero-actions { margin-top: 18px; }
+.doc-body { padding-top: 20px; padding-bottom: 32px; }
+.dsec + .dsec, .dintro + .dsec, .dcall + .dsec, .dpart + .dsec { margin-top: 20px; padding-top: 20px; }
+.dpart { margin-top: 24px; padding: 20px 24px; }
+.dpart .eyebrow { display: none; }
+.dpart h2 { margin-top: 0; }
+#faqs.section { padding-block: 40px; }
+.rel-sec { padding-top: 32px; }
+.close-txt { columns: auto; }
+.close-txt p { margin: 10px 0 0; }
+.close-txt .close-strong { margin-top: 14px; font-size: 16.5px; }
+.cta-band p, .close-txt p, .close-txt .close-strong { max-width: none !important; }
+.rel-sec { padding-bottom: 28px !important; }
