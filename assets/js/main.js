@@ -31,9 +31,9 @@ window.SITE = {
   if (nav) {
     const pill = d.createElement('span'); pill.className = 'nav-pill'; nav.prepend(pill);
     const cur = $('a[aria-current]', nav);
-    const place = (a) => { if (!a) { pill.style.width = 0; return; } pill.style.left = a.offsetLeft + 'px'; pill.style.width = a.offsetWidth + 'px'; };
+    const place = (a) => { if (!a) { pill.style.width = 0; return; } const nr = nav.getBoundingClientRect(), ar = a.getBoundingClientRect(); pill.style.left = (ar.left - nr.left) + 'px'; pill.style.width = ar.width + 'px'; };
     place(cur);
-    $$('a', nav).forEach((a) => a.addEventListener('pointerenter', () => place(a)));
+    $$(':scope > a, :scope > .nav-dd > a', nav).forEach((a) => a.addEventListener('pointerenter', () => place(a)));
     nav.addEventListener('pointerleave', () => place(cur));
     addEventListener('resize', () => place(cur));
     d.fonts && d.fonts.ready.then(() => place(cur));
@@ -248,9 +248,11 @@ window.SITE = {
     const box = $('.hero-img', hero), img = box && $('img', box), h1 = $('.h1', hero), acts = $('.hero-actions', hero);
     if (!img) return;
     const fit = () => {
-      if (innerWidth <= 960 || !h1 || !acts) { box.style.top = box.style.height = ''; return; }
+      if (innerWidth <= 960 || !h1 || !acts) { box.style.top = box.style.height = box.style.left = box.style.right = ''; return; }
       const hr = hero.getBoundingClientRect(), t = h1.getBoundingClientRect().top - hr.top, b = acts.getBoundingClientRect().bottom - hr.top;
       box.style.top = t + 'px'; box.style.height = (b - t) + 'px';
+      const side = $('.hero-side', hero);
+      if (side) { const sr = side.getBoundingClientRect(), w = (b - t) * 1374 / 1145; box.style.right = 'auto'; box.style.left = (sr.left - hr.left + (sr.width - w) / 2) + 'px'; }
     };
     fit(); addEventListener('resize', fit); d.fonts && d.fonts.ready.then(fit); new ResizeObserver(fit).observe(hero);
   });
@@ -271,6 +273,8 @@ window.SITE = {
   }
 
   /* ---------- Treatment article: highlight the section in view in the side contents ---------- */
+  const dside = $('.dside');
+  if (dside) { const stick = () => dside.classList.toggle('stick', dside.offsetHeight < innerHeight - 100); stick(); addEventListener('resize', stick); }
   const tocLinks = $$('.dtoc a');
   if (tocLinks.length) {
     const toc = $('.dtoc');
@@ -278,7 +282,6 @@ window.SITE = {
       if (!e.isIntersecting) return;
       tocLinks.forEach((a) => {
         const on = a.getAttribute('href') === '#' + e.target.id; a.classList.toggle('on', on);
-        if (on) toc.scrollTo({ top: a.offsetTop - toc.clientHeight / 2, behavior: 'smooth' });
       });
     }), { rootMargin: '-30% 0px -60% 0px' });
     tocLinks.forEach((a) => { const t = $(a.getAttribute('href')); if (t) tspy.observe(t); });
