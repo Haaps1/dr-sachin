@@ -255,6 +255,35 @@ window.SITE = {
     fit(); addEventListener('resize', fit); d.fonts && d.fonts.ready.then(fit); new ResizeObserver(fit).observe(hero);
   });
 
+  /* ---------- Treatments menu: desktop dropdown (click/keyboard) + mobile sheet ---------- */
+  $$('.nav-dd').forEach((dd) => {
+    const tg = $('.dd-toggle', dd);
+    tg.addEventListener('click', (e) => { e.preventDefault(); const o = !dd.classList.contains('open'); dd.classList.toggle('open', o); tg.setAttribute('aria-expanded', String(o)); });
+    d.addEventListener('click', (e) => { if (!dd.contains(e.target)) { dd.classList.remove('open'); tg.setAttribute('aria-expanded', 'false'); } });
+    dd.addEventListener('keydown', (e) => { if (e.key === 'Escape') { dd.classList.remove('open'); tg.setAttribute('aria-expanded', 'false'); tg.focus(); } });
+  });
+  const tm = $('.tmenu');
+  if (tm) {
+    const close = () => { tm.hidden = true; d.body.classList.remove('lock'); };
+    $$('[data-menu]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); tm.hidden = false; d.body.classList.add('lock'); $('.tmenu-x', tm).focus(); }));
+    $$('[data-close]', tm).forEach((b) => b.addEventListener('click', close));
+    d.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !tm.hidden) close(); });
+  }
+
+  /* ---------- Treatment article: highlight the section in view in the side contents ---------- */
+  const tocLinks = $$('.dtoc a');
+  if (tocLinks.length) {
+    const toc = $('.dtoc');
+    const tspy = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      tocLinks.forEach((a) => {
+        const on = a.getAttribute('href') === '#' + e.target.id; a.classList.toggle('on', on);
+        if (on) toc.scrollTo({ top: a.offsetTop - toc.clientHeight / 2, behavior: 'smooth' });
+      });
+    }), { rootMargin: '-30% 0px -60% 0px' });
+    tocLinks.forEach((a) => { const t = $(a.getAttribute('href')); if (t) tspy.observe(t); });
+  }
+
   /* ---------- Treatment page: highlight the section in view ---------- */
   const sub = $$('.subnav a');
   if (sub.length) {

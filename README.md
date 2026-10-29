@@ -8,7 +8,10 @@ Static site with no build step: open `index.html` or serve the folder with any s
 index.html              Home: brain image hero, specialities, technology, why, journey, warning signs,
                         second opinion, testimonials, FAQs
 about.html              About: bio, qualifications, training world map, philosophy
-treatments/brain-tumor-surgery.html   Brain Tumor Surgery (the only treatment page for now)
+treatments/*.html       14 treatment pages: Brain Tumor Surgery (custom design) + 13 pages built from the
+                        client's treatment documents (Glioma, Meningioma, Epilepsy, Hydrocephalus, Neuro Trauma,
+                        Skull Base, Pituitary, CSF Leak, Aneurysm & AVM, Endoscopic Spine, Scoliosis,
+                        Pain Management, Pediatric Neurosurgery)
 contact.html            Contact: call / WhatsApp / email, hours, appointment form (opens WhatsApp)
 manifest.webmanifest    Lets phones "Add to Home Screen" like an app
 assets/css/style.css    Design tokens (colours, fonts), layout, responsive rules, motion
@@ -27,8 +30,9 @@ assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Ap
   consultation hours on the Contact page and in the footer are dummy values.
 - **Doctor photo:** `assets/img/dr-sachin.webp` (supplied by the client).
   Used on Home (Meet your neurosurgeon), About and the treatment page doctor card.
-- **Treatments:** only Brain Tumor Surgery has a page so far. The other treatments are listed on the
-  home page without links until their pages are written.
+- **Treatments:** all 14 pages are linked from the Treatments menu (desktop dropdown, mobile sheet), the
+  footer and the Specialities section. The 13 document-based pages contain the documents' full text.
+  To change their wording, send the updated document and the pages are regenerated from it.
 - **Hero image:** `assets/img/hero-brain.webp` on Home and Brain Tumor Surgery (static).
   Make sure you hold the licence for it before launch.
 - **Testimonials** on the home page are **samples** (marked "Sample"). Replace them with genuine
