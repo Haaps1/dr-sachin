@@ -1280,3 +1280,14 @@ body.lock { overflow: hidden; }
 .close-txt .close-strong { margin-top: 14px; font-size: 16.5px; }
 .cta-band p, .close-txt p, .close-txt .close-strong { max-width: none !important; }
 .rel-sec { padding-bottom: 28px !important; }
+
+/* Treatments menu: 7 groups */
+.mega { grid-template-columns: repeat(4, minmax(180px, max-content)); gap: 18px 28px; }
+.mm-h { white-space: nowrap; }
+@media (max-width: 1100px) { .mega { grid-template-columns: repeat(3, max-content); } }
+.mega { grid-template-columns: repeat(4, 200px); gap: 20px 24px; }
+.mm-col { min-width: 0; }
+.mm-h { white-space: normal; align-items: flex-start; line-height: 1.35; min-height: 32px; }
+.mm-h .ico { flex: none; margin-top: -1px; }
+.mega a { white-space: normal; }
+@media (max-width: 1100px) { .mega { grid-template-columns: repeat(3, 190px); } }
