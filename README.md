@@ -33,6 +33,7 @@ assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Ap
 - **Treatments:** all 14 pages are linked from the Treatments menu (desktop dropdown, mobile sheet), the
   footer and the Specialities section. The 13 document-based pages contain the documents' full text.
   To change their wording, send the updated document and the pages are regenerated from it.
+- **Domain:** https://drsachinneurocare.com/ (canonical links, social tags, sitemap.xml and robots.txt use it).
 - **Hero image:** `assets/img/hero-brain.webp` on Home and Brain Tumor Surgery (static).
   Make sure you hold the licence for it before launch.
 - **Testimonials** on the home page are **samples** (marked "Sample"). Replace them with genuine
