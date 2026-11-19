@@ -1291,3 +1291,16 @@ body.lock { overflow: hidden; }
 .mm-h .ico { flex: none; margin-top: -1px; }
 .mega a { white-space: normal; }
 @media (max-width: 1100px) { .mega { grid-template-columns: repeat(3, 190px); } }
+
+/* Specialities: 7 groups */
+.specs { grid-template-columns: repeat(4, 1fr); }
+.spec { padding: 24px; }
+.spec h3 { font-size: 19px; }
+@media (max-width: 1100px) { .specs { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .specs { grid-template-columns: 1fr; } }
+.spec-cta { display: flex; flex-direction: column; align-items: flex-start; background: var(--grad-deep); }
+.spec-cta h3 { color: #fff; }
+.spec-cta p { color: #a9c1dc; flex: 1; }
+.spec-cta .btn { margin-top: 20px; --bh: 46px; font-size: 14.5px; }
+.spec-call { margin-top: 12px; font: 500 14px var(--head); color: #9fd8ff; }
+.spec-call:hover { color: #fff; }
