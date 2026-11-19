@@ -1304,3 +1304,5 @@ body.lock { overflow: hidden; }
 .spec-cta .btn { margin-top: 20px; --bh: 46px; font-size: 14.5px; }
 .spec-call { margin-top: 12px; font: 500 14px var(--head); color: #9fd8ff; }
 .spec-call:hover { color: #fff; }
+/* Treatment page images are already centred: no sideways shift on mobile */
+@media (max-width: 960px) { .t-hero .hero-img img { transform: scale(1.12); object-position: center; } }
