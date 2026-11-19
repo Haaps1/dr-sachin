@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /includes/
+Disallow: /coming-soon.php
+Disallow: /404.php
 
 Sitemap: https://drsachinneurocare.com/sitemap.xml

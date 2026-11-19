@@ -1,3 +1,8 @@
+<?php
+$base = '';
+$active = 'home';
+require __DIR__ . '/includes/bootstrap.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,20 +28,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Physician", "name": "Dr Sachin G R", "url": "https://drsachinneurocare.com/", "image": "https://drsachinneurocare.com/assets/img/dr-sachin.webp", "description": "Senior neurosurgeon specialising in brain and spine surgery, minimally invasive and endoscopic spine surgery, skull base and paediatric neurosurgery.", "medicalSpecialty": ["Neurosurgery", "Spine Surgery"], "telephone": "+91-99142-08940", "alumniOf": [{"@type": "CollegeOrUniversity", "name": "PGIMER Chandigarh"}], "knowsAbout": ["Brain tumor surgery", "Skull base surgery", "Minimally invasive spine surgery", "Endoscopic spine surgery", "Pediatric neurosurgery"]}</script>
 <link rel="preload" href="assets/img/hero-brain.webp" as="image" fetchpriority="high">
 </head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="top-progress" aria-hidden="true"></div>
-<header class="header header--dark">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Dr Sachin G R, home"><img src="assets/img/logo-mark.svg" alt="" width="44" height="44"><span><b>Dr Sachin G R</b><small>Neurosurgeon · Brain &amp; Spine</small></span></a>
-    <nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><div class="nav-dd"><a href="index.html#specialities" class="dd-toggle" aria-haspopup="true" aria-expanded="false">Treatments<svg class="ico dd-car" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a><div class="mega"><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg>Brain Tumor Surgery</span><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery</a><a href="treatments/gliomas.html">Glioma Treatment</a><a href="treatments/meningiomas.html">Meningioma Treatment</a><a href="treatments/skull-base-surgery.html">Skull Base Surgery</a><a href="treatments/pituitary-tumors.html">Pituitary Tumor Surgery</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-vessel"/></svg>Cerebrovascular Surgery</span><a href="treatments/brain-aneurysm-avm.html">Brain Aneurysm &amp; AVM</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg>Spine Surgery</span><a href="treatments/endoscopic-spine-surgery.html">Endoscopic Spine Surgery</a><a href="treatments/scoliosis.html">Scoliosis Treatment</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spark"/></svg>Functional Neurosurgery</span><a href="treatments/epilepsy-surgery.html">Epilepsy Treatment</a><a href="treatments/pain-management.html">Pain Management</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-shield"/></svg>Neurotrauma &amp; Emergency</span><a href="treatments/neuro-trauma.html">Neuro Trauma</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-child"/></svg>Pediatric Neurosurgery</span><a href="treatments/pediatric-neurosurgery.html">Pediatric Neurosurgery</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-skullbase"/></svg>Hydrocephalus &amp; CSF Disorders</span><a href="treatments/hydrocephalus-shunt-surgery.html">Hydrocephalus Treatment</a><a href="treatments/csf-leak-repair.html">CSF Leak Treatment</a></div></div></div><a href="contact.html">Contact</a></nav>
-    <div class="header-cta">
-      <a class="btn btn--glow" href="tel:+919914208940" data-phone><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg>99142 08940</a>
-      <a class="icon-btn header-call-m" href="tel:+919914208940" data-phone aria-label="Call Dr Sachin"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg></a>
-    </div>
-  </div>
-</header>
-
+<?php include __DIR__ . '/includes/header.php'; ?>
 <main id="main">
 <section class="hero">
   <div class="hero-img" aria-hidden="true"><img src="assets/img/hero-brain.webp" alt="" width="1374" height="1145" fetchpriority="high"></div>
@@ -212,30 +204,4 @@
 </section>
 
 </main>
-<nav class="tabbar" aria-label="App navigation">
-  <a class="tab" href="index.html" aria-current="page"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-home"/></svg><span>Home</span></a><a class="tab" href="about.html"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-user"/></svg><span>About</span></a>
-  <a class="tab tab--fab" href="tel:+919914208940" data-phone aria-label="Call now"><span class="fab"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-phone"/></svg></span></a>
-  <a class="tab" href="index.html#specialities" data-menu><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-grid"/></svg><span>Treatments</span></a><a class="tab" href="contact.html"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-mail"/></svg><span>Contact</span></a>
-</nav>
-<div class="tmenu" hidden><div class="tmenu-scrim" data-close></div><section class="tmenu-sheet" role="dialog" aria-modal="true" aria-label="Treatments"><div class="tmenu-top"><b>Treatments</b><button type="button" class="tmenu-x" data-close aria-label="Close"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-close"/></svg></button></div><div class="tmenu-list"><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-brain"/></svg>Brain Tumor Surgery</span><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery</a><a href="treatments/gliomas.html">Glioma Treatment</a><a href="treatments/meningiomas.html">Meningioma Treatment</a><a href="treatments/skull-base-surgery.html">Skull Base Surgery</a><a href="treatments/pituitary-tumors.html">Pituitary Tumor Surgery</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-vessel"/></svg>Cerebrovascular Surgery</span><a href="treatments/brain-aneurysm-avm.html">Brain Aneurysm &amp; AVM</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spine"/></svg>Spine Surgery</span><a href="treatments/endoscopic-spine-surgery.html">Endoscopic Spine Surgery</a><a href="treatments/scoliosis.html">Scoliosis Treatment</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-spark"/></svg>Functional Neurosurgery</span><a href="treatments/epilepsy-surgery.html">Epilepsy Treatment</a><a href="treatments/pain-management.html">Pain Management</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-shield"/></svg>Neurotrauma &amp; Emergency</span><a href="treatments/neuro-trauma.html">Neuro Trauma</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-child"/></svg>Pediatric Neurosurgery</span><a href="treatments/pediatric-neurosurgery.html">Pediatric Neurosurgery</a></div><div class="mm-col"><span class="mm-h"><svg class="ico" aria-hidden="true"><use href="assets/img/icons.svg#i-skullbase"/></svg>Hydrocephalus &amp; CSF Disorders</span><a href="treatments/hydrocephalus-shunt-surgery.html">Hydrocephalus Treatment</a><a href="treatments/csf-leak-repair.html">CSF Leak Treatment</a></div></div></section></div>
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <a class="brand" href="index.html"><img src="assets/img/logo-mark.svg" alt="" width="44" height="44"><span><b>Dr Sachin G R</b><small>MS, MCh (Neurosurgery)</small></span></a>
-        <p>Senior neurosurgeon trained at PGIMER Chandigarh, with fellowships in skull base surgery (Osaka, Japan), endoscopic spine surgery (South Korea) and paediatric neurosurgery (SickKids, Toronto).</p>
-      </div>
-      <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="index.html#specialities">Treatments</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="f-treat"><h4>Treatments</h4><ul><li><a href="treatments/brain-tumor-surgery.html">Brain Tumor Surgery</a></li><li><a href="treatments/gliomas.html">Glioma Treatment</a></li><li><a href="treatments/meningiomas.html">Meningioma Treatment</a></li><li><a href="treatments/skull-base-surgery.html">Skull Base Surgery</a></li><li><a href="treatments/pituitary-tumors.html">Pituitary Tumor Surgery</a></li><li><a href="treatments/brain-aneurysm-avm.html">Brain Aneurysm &amp; AVM</a></li><li><a href="treatments/endoscopic-spine-surgery.html">Endoscopic Spine Surgery</a></li><li><a href="treatments/scoliosis.html">Scoliosis Treatment</a></li><li><a href="treatments/epilepsy-surgery.html">Epilepsy Treatment</a></li><li><a href="treatments/pain-management.html">Pain Management</a></li><li><a href="treatments/neuro-trauma.html">Neuro Trauma</a></li><li><a href="treatments/pediatric-neurosurgery.html">Pediatric Neurosurgery</a></li><li><a href="treatments/hydrocephalus-shunt-surgery.html">Hydrocephalus Treatment</a></li><li><a href="treatments/csf-leak-repair.html">CSF Leak Treatment</a></li></ul></div>
-      <div><h4>Get in touch</h4><ul>
-        <li><a href="tel:+919914208940" data-phone>Call · 99142 08940</a></li>
-        <li><a href="https://wa.me/919914208940" data-wa target="_blank" rel="noopener">WhatsApp · 99142 08940</a></li>
-        <li><a href="mailto:care@drsachingr.com" data-email="text">care@drsachingr.com</a></li>
-        <li>Mon-Sat · 10:00 am, 6:00 pm</li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>© <span data-year>2026</span> Dr Sachin G R. All rights reserved.</span><span>Information on this site is educational and not a substitute for medical advice.</span></div>
-  </div>
-</footer>
-<script src="assets/js/main.js" defer></script>
-</body>
-</html>
+<?php include __DIR__ . '/includes/footer.php'; ?>

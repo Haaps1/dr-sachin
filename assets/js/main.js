@@ -4,7 +4,7 @@ window.SITE = {
   phone: '99142 08940',
   phoneIntl: '+919914208940',
   whatsapp: '919914208940',
-  email: 'care@drsachingr.com' // placeholder — replace with the real address
+  email: 'care@drsachinneurocare.com' // placeholder — replace with the real address
 };
 
 (function () {
@@ -138,38 +138,7 @@ window.SITE = {
     if (img.complete && !img.naturalWidth) hide(); else img.addEventListener('error', hide);
   });
 
-  /* ---------- Hero brain: lobes highlight in turn; hover, tap or focus to explore ---------- */
-  $$('[data-brain]').forEach((stage) => {
-    const lobes = $$('.lobe', stage), card = $('.lobe-card', stage), pin = $('.lobe-pin', stage), svg = $('svg', stage);
-    if (!lobes.length) return;
-    let i = 0, timer, visible = true;
-    const show = (k) => {
-      i = k; const l = lobes[k];
-      lobes.forEach((x) => x.classList.toggle('on', x === l));
-      $('b', card).textContent = l.dataset.name; $('small', card).textContent = l.dataset.info;
-      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
-      pin.style.transform = `translate(${l.dataset.x}px, ${l.dataset.y}px)`;
-    };
-    const play = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => { if (visible) show((i + 1) % lobes.length); }, 3200); };
-    lobes.forEach((l, k) => {
-      l.addEventListener('pointerenter', () => { show(k); clearInterval(timer); });
-      l.addEventListener('pointerleave', play);
-      l.addEventListener('focus', () => { show(k); clearInterval(timer); });
-      l.addEventListener('blur', play);
-      l.addEventListener('click', () => { show(k); play(); });
-    });
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
-    if (fine && !reduce) {
-      stage.addEventListener('pointermove', (e) => {
-        const r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-        svg.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 6}deg)`;
-      });
-      stage.addEventListener('pointerleave', () => { svg.style.transform = ''; });
-    }
-    show(0); play();
-  });
-
-  /* ---------- Scroll-linked progress: spine indicator, top bar, journey, neuron drawing ---------- */
+  /* ---------- Scroll-linked progress: top bar and procedure journey ---------- */
   const topbar = $('.top-progress');
   const journeys = $$('[data-progress]');
   let ticking = false;

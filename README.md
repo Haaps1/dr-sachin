@@ -1,48 +1,50 @@
-# Dr Sachin G R — Website
+# Dr Sachin G R: Website (drsachinneurocare.com)
 
-Website for Dr Sachin G R, senior neurosurgeon (brain & spine surgery).
-Static site with no build step: open `index.html` or serve the folder with any static host
-(GitHub Pages, Netlify, Vercel, cPanel…).
+Website for Dr Sachin G R, senior neurosurgeon (brain & spine surgery). PHP site for Hostinger
+(any Apache/LiteSpeed host with PHP 7.4+). No database, no build step.
 
 ```
-index.html              Home: brain image hero, specialities, technology, why, journey, warning signs,
-                        second opinion, testimonials, FAQs
-about.html              About: bio, qualifications, training world map, philosophy
-treatments/*.html       14 treatment pages: Brain Tumor Surgery (custom design) + 13 pages built from the
-                        client's treatment documents (Glioma, Meningioma, Epilepsy, Hydrocephalus, Neuro Trauma,
-                        Skull Base, Pituitary, CSF Leak, Aneurysm & AVM, Endoscopic Spine, Scoliosis,
-                        Pain Management, Pediatric Neurosurgery)
-contact.html            Contact: call / WhatsApp / email, hours, appointment form (opens WhatsApp)
-manifest.webmanifest    Lets phones "Add to Home Screen" like an app
-assets/css/style.css    Design tokens (colours, fonts), layout, responsive rules, motion
-assets/js/main.js       Shared interactions + CONTACT DETAILS (SITE object at the top)
-assets/js/treatments.js All treatment content (name, summary, overview, when needed, approach, recovery)
-assets/img/             Logo mark, icon sprite and hero-brain.webp (hero image supplied by the client)
-assets/fonts/           Self-hosted Poppins & Roboto (SIL Open Font License / Apache 2.0)
+index.php, about.php, contact.php    Main pages (served as / , /about.html, /contact.html)
+privacy-policy.php                   Privacy Policy
+treatments/*.php                     14 treatment pages (served as /treatments/<name>.html)
+404.php                              "Page not found" page
+coming-soon.php                      Coming Soon page (switch in includes/config.php)
+includes/config.php                  SETTINGS: Coming Soon on/off and preview key
+includes/header.php                  Shared site header (logo, menu, Treatments dropdown)
+includes/footer.php                  Shared footer, phone tab bar and Treatments sheet
+includes/bootstrap.php               Loads settings, menu highlighting, Coming Soon logic
+.htaccess                            https + non-www redirects, .html addresses, 404, redirects,
+                                     security headers, blocking of private files, caching
+sitemap.xml, robots.txt, llms.txt    Search engine and AI-assistant files
+assets/                              CSS, JS, fonts, images
 ```
 
-## Updating content
+## Coming Soon: turn on / off
 
-- **Phone / WhatsApp / email** live in the `SITE` object at the top of `assets/js/main.js`.
-  The same values are in the HTML as the no-JavaScript fallback. Search for `99142 08940` and
-  `care@drsachingr.com` to update them everywhere.
-- **Placeholders to replace before launch:** the email address (`care@drsachingr.com`) and the
-  consultation hours on the Contact page and in the footer are dummy values.
-- **Doctor photo:** `assets/img/dr-sachin.webp` (supplied by the client).
-  Used on Home (Meet your neurosurgeon), About and the treatment page doctor card.
-- **Treatments:** all 14 pages are linked from the Treatments menu (desktop dropdown, mobile sheet), the
-  footer and the Specialities section. The 13 document-based pages contain the documents' full text.
-  To change their wording, send the updated document and the pages are regenerated from it.
-- **Domain:** https://drsachinneurocare.com/ (canonical links, social tags, sitemap.xml and robots.txt use it).
-- **Hero image:** `assets/img/hero-brain.webp` on Home and Brain Tumor Surgery (static).
-  Make sure you hold the licence for it before launch.
-- **Testimonials** on the home page are **samples** (marked "Sample"). Replace them with genuine
-  reviews shared with the patient's consent. See the comment above the section in `index.html`.
+Edit `includes/config.php` (Hostinger: File Manager > public_html > includes > config.php):
+
+- `define('COMING_SOON', true);`  Coming Soon page ON for all visitors (sends "503, come back later",
+  so Google does not drop the site).
+- `define('COMING_SOON', false);` website LIVE.
+
+While it is ON you can view the real site at `https://drsachinneurocare.com/?preview=dr-33b4cc3e25fd`
+(remembered for 30 days). Change `PREVIEW_KEY` to any word to make a new link. Note: this repository is
+public, so the key in it can be seen; change it on the server if that matters.
+
+## Editing
+
+- Header/menu: `includes/header.php`. Footer and phone menu: `includes/footer.php`. A change there
+  updates every page.
+- Phone / WhatsApp / email also live in the `SITE` object at the top of `assets/js/main.js`.
+- Placeholders to confirm before launch: email `care@drsachinneurocare.com` (create this mailbox in
+  Hostinger or change it) and the consultation hours (Contact page and footer).
+- Testimonials on the home page are samples (marked "Sample").
+- Redirects: add lines in section 3 of `.htaccess`.
 
 ## Notes
 
-- Mobile layout behaves like an app: bottom tab bar with a centre call button and app-style page
-  transitions in supporting browsers.
-- Motion respects `prefers-reduced-motion`. Canvases pause when off-screen or in background tabs.
-- The appointment form has no backend. It opens WhatsApp with a pre-filled message.
-- Medical content is general patient information, not a substitute for a consultation.
+- All addresses use https and no "www"; www requests are 301-redirected and marked noindex.
+- No tracking, analytics or third-party scripts. A strict Content-Security-Policy is set in `.htaccess`.
+- The appointment form has no backend; it opens WhatsApp with a pre-filled message.
+- Hero images on treatment pages are AI-generated illustrations (Canva). Medical content is general
+  patient information, not a substitute for a consultation.
