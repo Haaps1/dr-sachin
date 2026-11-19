@@ -233,6 +233,25 @@ window.SITE = {
     d.addEventListener('click', (e) => { if (!dd.contains(e.target)) { dd.classList.remove('open'); tg.setAttribute('aria-expanded', 'false'); } });
     dd.addEventListener('keydown', (e) => { if (e.key === 'Escape') { dd.classList.remove('open'); tg.setAttribute('aria-expanded', 'false'); tg.focus(); } });
   });
+  /* Desktop mega menu: line up with the page content, switch speciality on hover/focus */
+  $$('.mega').forEach((mg) => {
+    const dd = mg.closest('.nav-dd'), wrap = mg.closest('.wrap'), img = $('.mg-feat img', mg);
+    const align = () => {
+      const cs = getComputedStyle(wrap), wr = wrap.getBoundingClientRect(), dr = dd.getBoundingClientRect();
+      const l = wr.left + parseFloat(cs.paddingLeft), w = wr.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      mg.style.left = (l - dr.left) + 'px'; mg.style.width = w + 'px';
+    };
+    const pick = (i) => {
+      $$('.mg-cat', mg).forEach((c) => c.classList.toggle('on', c.dataset.i === i));
+      $$('.mg-pane', mg).forEach((p) => p.classList.toggle('on', p.dataset.i === i));
+      const c = $('.mg-cat[data-i="' + i + '"]', mg); if (img && c) img.src = c.dataset.img;
+    };
+    $$('.mg-cat', mg).forEach((c) => { c.addEventListener('pointerenter', () => pick(c.dataset.i)); c.addEventListener('focus', () => pick(c.dataset.i)); c.addEventListener('click', () => pick(c.dataset.i)); });
+    const here = $$('.mg-pane a', mg).find((a) => a.pathname === location.pathname);
+    if (here) { here.setAttribute('aria-current', 'page'); pick(here.closest('.mg-pane').dataset.i); }
+    dd.addEventListener('pointerenter', align); dd.addEventListener('focusin', align);
+    align(); addEventListener('resize', align);
+  });
   const tm = $('.tmenu');
   if (tm) {
     const close = () => { tm.hidden = true; d.body.classList.remove('lock'); };

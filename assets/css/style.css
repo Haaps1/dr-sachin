@@ -858,17 +858,9 @@ body.lock { overflow: hidden; }
 .dd-toggle { display: inline-flex !important; align-items: center; gap: 6px; }
 .dd-car { width: 13px; height: 13px; transform: rotate(90deg); transition: transform .3s var(--ease); }
 .nav-dd:hover .dd-car, .nav-dd.open .dd-car { transform: rotate(-90deg); }
-.mega { position: absolute; left: 50%; top: calc(100% + 14px); transform: translate(-50%, 8px); display: grid; grid-template-columns: repeat(4, max-content); gap: 8px 26px; padding: 22px 26px; border-radius: 22px; background: #fff; box-shadow: 0 30px 70px -20px rgba(11, 31, 58, .45), inset 0 0 0 1px var(--line); opacity: 0; visibility: hidden; transition: opacity .25s, transform .3s var(--ease), visibility .25s; }
-.mega::before { content: ''; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
-.nav-dd:hover .mega, .nav-dd:focus-within .mega, .nav-dd.open .mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
 .mm-col { display: flex; flex-direction: column; gap: 2px; min-width: 170px; }
 .mm-h { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font: 600 11.5px var(--head); letter-spacing: .12em; text-transform: uppercase; color: var(--secondary); }
 .mm-h .ico { width: 16px; height: 16px; }
-.mega a, .header--dark:not(.is-solid) .mega a { padding: 8px 10px !important; margin-left: -10px; border-radius: 10px; font: 500 14px/1.3 var(--head) !important; color: var(--primary) !important; white-space: nowrap; }
-.mega a:hover { background: var(--bg); color: var(--secondary) !important; }
-@media (max-width: 1100px) {
-  .mega { grid-template-columns: repeat(2, max-content); }
-}
 /* ---------- Treatments sheet (mobile) ---------- */
 .tmenu { position: fixed; inset: 0; z-index: 150; }
 .tmenu[hidden] { display: none; }
@@ -1050,19 +1042,10 @@ body.lock { overflow: hidden; }
 .cta-band p, .close-txt p, .close-txt .close-strong { max-width: none !important; }
 .rel-sec { padding-bottom: 28px !important; }
 /* Treatments menu: 7 groups */
-.mega { grid-template-columns: repeat(4, minmax(180px, max-content)); gap: 18px 28px; }
 .mm-h { white-space: nowrap; }
-@media (max-width: 1100px) {
-  .mega { grid-template-columns: repeat(3, max-content); }
-}
-.mega { grid-template-columns: repeat(4, 200px); gap: 20px 24px; }
 .mm-col { min-width: 0; }
 .mm-h { white-space: normal; align-items: flex-start; line-height: 1.35; min-height: 32px; }
 .mm-h .ico { flex: none; margin-top: -1px; }
-.mega a { white-space: normal; }
-@media (max-width: 1100px) {
-  .mega { grid-template-columns: repeat(3, 190px); }
-}
 /* Specialities: 7 groups */
 .specs { grid-template-columns: repeat(4, 1fr); }
 .spec { padding: 24px; }
@@ -1121,3 +1104,35 @@ body.lock { overflow: hidden; }
 .cs-role { margin-top: 8px; font: 500 15px var(--head); color: #7dd3fc; }
 .cs-txt { margin-top: 16px; font-size: 16px; line-height: 1.7; }
 .cs-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+/* ---------- Treatments mega menu (desktop): specialities | treatments | help card ---------- */
+.mega { position: absolute; top: calc(100% + 16px); left: 0; width: 1000px; display: grid; grid-template-columns: 310px 1fr 300px; overflow: hidden; border-radius: 24px; background: #fff; box-shadow: 0 40px 90px -30px rgba(3, 10, 25, .6), 0 0 0 1px rgba(11, 31, 58, .06); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .25s, transform .3s var(--ease), visibility .25s; text-align: left; }
+.mega::before { content: ''; position: absolute; left: 0; right: 0; top: -18px; height: 18px; }
+.nav-dd:hover .mega, .nav-dd:focus-within .mega, .nav-dd.open .mega { opacity: 1; visibility: visible; transform: none; }
+.mg-cats { display: flex; flex-direction: column; gap: 2px; padding: 18px; background: var(--bg); border-right: 1px solid var(--line); }
+.mg-cat { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; white-space: nowrap; border: 0; border-radius: 14px; background: none; font: 500 14.5px/1.3 var(--head); color: var(--text); text-align: left; cursor: pointer; transition: background .2s, color .2s; }
+.mg-cat .ico { width: 18px; height: 18px; flex: none; color: var(--secondary); }
+.mg-cat::after { content: '\203A'; margin-left: auto; font-size: 20px; line-height: 1; opacity: 0; transition: opacity .2s; }
+.mg-cat:hover { background: rgba(14, 116, 144, .08); }
+.mg-cat.on { background: var(--primary); color: #fff; }
+.mg-cat.on .ico { color: var(--accent); }
+.mg-cat.on::after { opacity: 1; }
+.mg-list { padding: 26px 30px; min-width: 0; }
+.mg-pane { display: none; flex-direction: column; gap: 4px; }
+.mg-pane.on { display: flex; animation: fadeIn .25s; }
+.mg-h { margin-bottom: 10px; font: 600 12.5px var(--head); letter-spacing: .12em; text-transform: uppercase; color: var(--secondary); }
+.mega .mg-pane a { display: block; padding: 12px 14px !important; margin: 0; border-radius: 14px; background: none; transition: background .2s; }
+.mega .mg-pane a b { display: block; font: 600 15.5px/1.3 var(--head); color: var(--primary); }
+.mega .mg-pane a span { display: block; margin-top: 3px; font: 400 13.5px/1.4 var(--body); color: var(--muted); }
+.mega .mg-pane a:hover, .mega .mg-pane a[aria-current] { background: #eef7fb; }
+.mega .mg-pane a:hover b { color: var(--secondary); }
+.mg-feat { display: flex; flex-direction: column; padding: 22px; background: var(--primary); color: #fff; }
+.mg-feat img { width: 100%; height: 170px; object-fit: cover; border-radius: 16px; background: #051129; }
+.mg-feat b { margin-top: 16px; font: 600 17px var(--head); }
+.mg-feat p { margin: 8px 0 18px; font-size: 13.5px; line-height: 1.55; color: #a9bdd6; }
+.mega .mg-cta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto; padding: 13px 18px !important; border-radius: 999px; background: linear-gradient(90deg, var(--secondary), var(--accent)); font: 600 15px var(--head); color: #fff !important; box-shadow: 0 14px 30px -14px rgba(56, 189, 248, .8); transition: transform .25s var(--ease), box-shadow .25s; }
+.mega .mg-cta:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -12px rgba(56, 189, 248, .9); }
+.mg-cta .ico { width: 17px; height: 17px; }
+@media (max-width: 1100px) {
+  .mega { grid-template-columns: 290px 1fr; }
+  .mg-feat { display: none; }
+}
